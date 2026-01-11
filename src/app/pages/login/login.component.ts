@@ -3,8 +3,6 @@ import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth.service';
-import { TranslationService } from '../../core/services/translation.service';
-import { ThemeService } from '../../core/services/theme.service';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({

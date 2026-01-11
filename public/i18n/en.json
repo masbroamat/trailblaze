@@ -63,6 +63,15 @@
     "login": "Sign In",
     "signingIn": "Signing In...",
     "noAccount": "Don't have an account?",
-    "signup": "Sign up"
+    "signup": "Sign up",
+    "signupTitle": "Create your account",
+    "signupSubtitle": "Join the community and start documenting your adventures.",
+    "fullName": "Full Name",
+    "fullNamePlaceholder": "Your full name",
+    "fullNameRequired": "Full name is required.",
+    "signupUsernamePlaceholder": "Choose a username",
+    "signupPasswordPlaceholder": "Create a password (min 8 characters)",
+    "creatingAccount": "Creating Account...",
+    "hasAccount": "Already have an account?"
   }
 }

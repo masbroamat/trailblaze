@@ -63,6 +63,15 @@
     "login": "Log Masuk",
     "signingIn": "Sedang Log Masuk...",
     "noAccount": "Tiada akaun?",
-    "signup": "Daftar"
+    "signup": "Daftar",
+    "signupTitle": "Cipta akaun anda",
+    "signupSubtitle": "Sertai komuniti dan mula mendokumentasikan pengembaraan anda.",
+    "fullName": "Nama Penuh",
+    "fullNamePlaceholder": "Nama penuh anda",
+    "fullNameRequired": "Nama penuh diperlukan.",
+    "signupUsernamePlaceholder": "Pilih nama pengguna",
+    "signupPasswordPlaceholder": "Cipta kata laluan (min 8 aksara)",
+    "creatingAccount": "Mencipta Akaun...",
+    "hasAccount": "Sudah mempunyai akaun?"
   }
 }
