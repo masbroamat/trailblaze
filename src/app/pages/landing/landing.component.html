@@ -1,1 +1,197 @@
-<p>landing works!</p>
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-50">
+  <header class="fixed top-0 z-[100] w-full backdrop-blur-xl bg-background-light/80 dark:bg-background-dark/80 border-b border-[#e7f3ef] dark:border-[#1f362e] transition-all duration-300">
+    <div class="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-6 lg:px-12">
+      <a routerLink="/" class="flex items-center gap-3 group cursor-pointer">
+        <div class="flex size-8 items-center justify-center rounded-lg bg-primary text-black transition-transform group-hover:rotate-12">
+          <span class="material-symbols-outlined text-[20px] font-bold">explore</span>
+        </div>
+        <h2 class="text-xl font-bold tracking-tight text-zinc-950 dark:text-white">Trailblaze</h2>
+      </a>
+
+      <div class="flex items-center gap-3">
+        <button class="hidden sm:flex h-10 items-center justify-center gap-2 rounded-2xl bg-white dark:bg-surface-dark px-3 text-sm font-semibold text-gray-700 dark:text-gray-200 border border-transparent hover:border-gray-200 dark:hover:border-gray-700 transition-all">
+          <span class="material-symbols-outlined text-[18px]">translate</span>
+          <span>{{ true ? 'EN' : 'BM' }}</span>
+        </button>
+        <button
+        (click)="toggleTheme()"
+        class="hidden sm:flex size-10 items-center justify-center rounded-2xl bg-white dark:bg-surface-dark text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#253831] transition-colors">
+          <span class="material-symbols-outlined text-[20px]">{{ themeService.isDark() ? 'light_mode' : 'dark_mode' }}</span>
+        </button>
+        <a routerLink="/login" class="hidden sm:flex h-10 items-center gap-2 rounded-2xl bg-primary px-5 text-sm font-bold text-[#0d1b17] shadow-sm shadow-primary/20 hover:bg-[#0fd693] hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300">
+          <span>Start Journaling</span>
+        </a>
+
+        <div class="sm:hidden relative" (clickOutside)="closeMobileMenu()">
+          <button
+            (click)="toggleMobileMenu()"
+            class="flex items-center justify-center size-10 rounded-2xl bg-white dark:bg-surface-dark text-zinc-950 dark:text-white hover:bg-gray-100 dark:hover:bg-[#253831] transition-colors"
+          >
+            <span class="material-symbols-outlined text-[24px]">{{ mobileMenuOpen ? 'close' : 'menu' }}</span>
+          </button>
+
+          @if (mobileMenuOpen) {
+            <div class="absolute right-0 top-full mt-2 w-48 rounded-2xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 shadow-xl overflow-hidden animate-fade-in-up">
+              <div class="p-2 flex flex-col gap-1">
+                <button
+
+                  class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-left text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#253831] transition-colors"
+                >
+                  <span class="material-symbols-outlined text-[20px]">translate</span>
+                  <span>{{ true ? 'English' : 'Bahasa Melayu' }}</span>
+                </button>
+
+                <button
+                  (click)="toggleTheme()"
+                  class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-left text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#253831] transition-colors"
+                >
+                  <span class="material-symbols-outlined text-[20px]">{{ themeService.isDark() ? 'light_mode' : 'dark_mode' }}</span>
+                  <span>{{ themeService.isDark() ? 'Light Mode' : 'Dark Mode' }}</span>
+                </button>
+
+                <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+
+                <a
+                  routerLink="/login"
+                  (click)="closeMobileMenu()"
+                  class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-left text-sm font-bold text-[#0d1b17] bg-primary hover:bg-[#0fd693] transition-colors"
+                >
+                  <span class="material-symbols-outlined text-[20px]">login</span>
+                  <span>Start Journaling</span>
+                </a>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="w-full">
+    <section class="relative h-screen min-h-[700px] w-full flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 w-full h-full">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 z-10"></div>
+        <img
+          alt="Cinematic landscape with misty mountains and serene lake"
+          class="w-full h-full object-cover object-center scale-105"
+          src="/landing-page-bg.png"
+        />
+      </div>
+      <div class="relative z-20 container mx-auto px-6 text-center text-white">
+        <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 leading-tight max-w-5xl mx-auto">
+          Chronicle Your Journey.
+        </h1>
+
+        <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
+          A minimalist sanctuary for your travel memories. Capture the essence of every destination with distraction-free journaling.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a routerLink="/login" class="h-12 px-8 rounded-full bg-white text-slate-900 font-bold hover:bg-slate-100 transition-colors w-full sm:w-auto flex items-center justify-center">
+            Start Journaling
+          </a>
+        </div>
+      </div>
+      <div class="absolute bottom-10 left-0 right-0 z-20 flex justify-center animate-bounce">
+        <span class="material-symbols-outlined text-white/50 text-4xl">keyboard_arrow_down</span>
+      </div>
+    </section>
+
+    <section class="py-24 bg-background-light dark:bg-background-dark">
+      <div class="container mx-auto px-6 lg:px-12 max-w-[1440px]">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div class="max-w-xl">
+            <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
+              Highlighted Destinations
+            </h2>
+            <p class="text-slate-500 dark:text-slate-400 text-lg">
+              Curated experiences from our community of global wanderers.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          @for (dest of destinations; track dest.title) {
+            <div class="group ">
+              <div class="relative overflow-hidden rounded-2xl aspect-[4/5] mb-4">
+                <img
+                  [alt]="dest.title"
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  [src]="dest.image"
+                />
+                <div class="absolute top-4 right-4 bg-white/90 dark:bg-background-dark/90 backdrop-blur text-slate-900 dark:text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
+                  {{ dest.category }}
+                </div>
+              </div>
+              <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors">
+                {{ dest.title }}
+              </h3>
+              <p class="text-slate-500 dark:text-slate-400">{{ dest.location }} • {{ dest.entries }} Entries</p>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-slate-50 dark:bg-surface-dark">
+      <div class="container mx-auto px-6 lg:px-12 max-w-[1440px]">
+        <div class="text-center max-w-3xl mx-auto mb-20">
+          <span class="text-primary font-bold tracking-widest uppercase text-sm mb-2 block">Latest Entries</span>
+          <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">Event Journals</h2>
+          <p class="text-slate-500 dark:text-slate-400 text-lg">
+            Dive into the personal narratives of travelers exploring the unknown. Real stories, unfiltered moments.
+          </p>
+        </div>
+
+        <div class="space-y-12">
+          @for (journal of journals; track journal.title; let i = $index) {
+            <div class="flex flex-col gap-8 items-center group" [ngClass]="{'lg:flex-row': i % 2 === 0, 'lg:flex-row-reverse': i % 2 !== 0}">
+              <div class="w-full lg:w-1/2 overflow-hidden rounded-2xl">
+                <img
+                  [alt]="journal.title"
+                  class="w-full h-[400px] object-cover transition-transform duration-700 group-hover:scale-105"
+                  [src]="journal.image"
+                />
+              </div>
+              <div class="w-full lg:w-1/2" [ngClass]="{'lg:pl-10': i % 2 === 0, 'lg:pr-10': i % 2 !== 0}">
+                <div class="flex items-center gap-3 mb-4 text-sm text-slate-500 dark:text-slate-400">
+                  <span class="bg-white dark:bg-slate-700 px-3 py-1 rounded-full shadow-sm text-slate-900 dark:text-white font-medium">{{ journal.date }}</span>
+                  <span>•</span>
+                  <span>{{ journal.location }}</span>
+                </div>
+                <h3 class="text-3xl font-bold text-slate-900 dark:text-white mb-4 leading-tight group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
+                  {{ journal.title }}
+                </h3>
+                <p class="text-slate-600 dark:text-slate-300 mb-6 leading-relaxed">
+                  {{ journal.excerpt }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+      <div class="absolute inset-0 opacity-20">
+        <img
+          alt="Background pattern"
+          class="w-full h-full object-cover grayscale"
+          src="/ny-map.png"
+        />
+      </div>
+      <div class="container mx-auto px-6 relative z-10 text-center">
+        <h2 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Your story deserves a stage.</h2>
+        <p class="text-slate-400 text-xl max-w-2xl mx-auto mb-10">Join thousands of travelers documenting their journey with TrailBlaze.</p>
+        <a
+          routerLink="/signup"
+          class="inline-block bg-white text-slate-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all transform hover:scale-105 shadow-2xl shadow-white/10"
+        >
+          Start Your Journal Free
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <app-footer></app-footer>
+</div>
