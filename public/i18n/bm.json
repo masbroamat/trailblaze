@@ -40,5 +40,29 @@
       "partnerships": "Perkongsian"
     },
     "copyright": "Hak cipta terpelihara."
+  },
+  "common": {
+    "back": "Kembali",
+    "copyright": "© {{year}} TrailBlaze Inc."
+  },
+  "auth": {
+    "photoOfTheDay": "Foto hari ini",
+    "sidebarTitle": "Abadikan dunia seperti yang anda lihat.",
+    "sidebarSubtitle": "Sertai ribuan pengembara yang mendokumentasikan perjalanan mereka, satu foto pada satu masa.",
+    "sidebarLocation": "Pergunungan Alps Switzerland, Switzerland",
+    "startJourney": "Mulakan perjalanan anda",
+    "loginSubtitle": "Log masuk untuk terus mendokumentasikan pengembaraan anda.",
+    "username": "Nama pengguna",
+    "usernamePlaceholder": "Ahmad Ali",
+    "usernameRequired": "Nama pengguna diperlukan.",
+    "password": "Kata laluan",
+    "passwordPlaceholder": "Masukkan kata laluan anda",
+    "passwordRequired": "Kata laluan diperlukan.",
+    "passwordMinLength": "Kata laluan mesti sekurang-kurangnya 8 aksara.",
+    "forgotPassword": "Lupa kata laluan?",
+    "login": "Log Masuk",
+    "signingIn": "Sedang Log Masuk...",
+    "noAccount": "Tiada akaun?",
+    "signup": "Daftar"
   }
 }

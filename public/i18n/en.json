@@ -40,5 +40,29 @@
       "partnerships": "Partnerships"
     },
     "copyright": "All rights reserved."
+  },
+  "common": {
+    "back": "Back",
+    "copyright": "© {{year}} TrailBlaze Inc."
+  },
+  "auth": {
+    "photoOfTheDay": "Photo of the day",
+    "sidebarTitle": "Capture the world as you see it.",
+    "sidebarSubtitle": "Join thousands of travelers documenting their journey, one photo at a time.",
+    "sidebarLocation": "Swiss Alps, Switzerland",
+    "startJourney": "Start your journey",
+    "loginSubtitle": "Sign in to continue documenting your adventures.",
+    "username": "Username",
+    "usernamePlaceholder": "John Doe",
+    "usernameRequired": "Username is required.",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "passwordRequired": "Password is required.",
+    "passwordMinLength": "Password must be at least 8 characters.",
+    "forgotPassword": "Forgot password?",
+    "login": "Sign In",
+    "signingIn": "Signing In...",
+    "noAccount": "Don't have an account?",
+    "signup": "Sign up"
   }
 }

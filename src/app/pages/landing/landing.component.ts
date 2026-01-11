@@ -1,9 +1,9 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { RouterLink } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../core/services/theme.service';
-import {TranslatePipe, TranslateDirective} from '@ngx-translate/core';
+import { TranslatePipe } from '@ngx-translate/core';
 import { TranslationService } from '../../core/services/translation.service';
 import { ClickOutsideDirective } from '../../shared/directives/click-outside.directive';
 
