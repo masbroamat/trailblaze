@@ -1,16 +1,21 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { RouterLink } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../core/services/theme.service';
+import {TranslatePipe, TranslateDirective} from '@ngx-translate/core';
+import { TranslationService } from '../../core/services/translation.service';
+import { ClickOutsideDirective } from '../../shared/directives/click-outside.directive';
 
 @Component({
   selector: 'app-landing',
-  imports: [CommonModule, FooterComponent, RouterLink],
+  imports: [CommonModule, FooterComponent, RouterLink, TranslatePipe, ClickOutsideDirective],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
 export class LandingComponent {
+
+  translateService = inject(TranslationService);
 
   themeService = inject(ThemeService);
   mobileMenuOpen = false;
@@ -26,7 +31,11 @@ export class LandingComponent {
   toggleTheme(): void {
     this.themeService.toggleTheme();
   }
-  
+
+  toggleLanguage(): void{
+    this.translateService.toggleLanguage();
+  }
+
   destinations = [
     {
       image: '/kyoto-traditional.png',

@@ -1,0 +1,44 @@
+{
+  "landing": {
+    "hero": {
+      "title": "Abadikan Perjalanan Anda.",
+      "subtitle": "Tempat tenang minimalis untuk kenangan perjalanan anda. Tangkap intipati setiap destinasi dengan jurnal tanpa gangguan.",
+      "cta": "Mula Menulis Jurnal"
+    },
+    "featured": {
+      "title": "Destinasi Pilihan",
+      "subtitle": "Pengalaman terpilih daripada komuniti pengembara global kami."
+    },
+    "journals": {
+      "badge": "Catatan Terkini",
+      "title": "Jurnal Acara",
+      "subtitle": "Selami naratif peribadi pengembara yang meneroka dunia. Kisah sebenar, detik tanpa penapis."
+    },
+    "cta": {
+      "title": "Kisah anda layak dipentaskan.",
+      "subtitle": "Sertai ribuan pengembara yang mendokumentasikan perjalanan mereka dengan TrailBlaze.",
+      "button": "Mulakan Jurnal Percuma"
+    },
+    "entries": "Entri"
+  },
+  "header": {
+    "language": {
+      "en": "EN",
+      "bm": "BM",
+      "english": "English",
+      "bahasaMelayu": "Bahasa Melayu"
+    },
+    "theme": {
+      "lightMode": "Mod Cerah",
+      "darkMode": "Mod Gelap"
+    }
+  },
+  "footer": {
+    "tagline": "Membina rumah digital untuk pengembara moden. Berpusat di San Francisco, mengabadikan dunia.",
+    "contact": {
+      "title": "Hubungi",
+      "partnerships": "Perkongsian"
+    },
+    "copyright": "Hak cipta terpelihara."
+  }
+}

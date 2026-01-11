@@ -9,9 +9,11 @@
       </a>
 
       <div class="flex items-center gap-3">
-        <button class="hidden sm:flex h-10 items-center justify-center gap-2 rounded-2xl bg-white dark:bg-surface-dark px-3 text-sm font-semibold text-gray-700 dark:text-gray-200 border border-transparent hover:border-gray-200 dark:hover:border-gray-700 transition-all">
+        <button
+        (click)="toggleLanguage()"
+        class="hidden sm:flex h-10 items-center justify-center gap-2 rounded-2xl bg-white dark:bg-surface-dark px-3 text-sm font-semibold text-gray-700 dark:text-gray-200 border border-transparent hover:border-gray-200 dark:hover:border-gray-700 transition-all">
           <span class="material-symbols-outlined text-[18px]">translate</span>
-          <span>{{ true ? 'EN' : 'BM' }}</span>
+          <span>{{ this.translateService.isEnglish() ? 'EN' : 'BM' }}</span>
         </button>
         <button
         (click)="toggleTheme()"
@@ -19,7 +21,7 @@
           <span class="material-symbols-outlined text-[20px]">{{ themeService.isDark() ? 'light_mode' : 'dark_mode' }}</span>
         </button>
         <a routerLink="/login" class="hidden sm:flex h-10 items-center gap-2 rounded-2xl bg-primary px-5 text-sm font-bold text-[#0d1b17] shadow-sm shadow-primary/20 hover:bg-[#0fd693] hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300">
-          <span>Start Journaling</span>
+          <span>{{ 'landing.hero.cta' | translate}}</span>
         </a>
 
         <div class="sm:hidden relative" (clickOutside)="closeMobileMenu()">
@@ -34,11 +36,11 @@
             <div class="absolute right-0 top-full mt-2 w-48 rounded-2xl bg-white dark:bg-surface-dark border border-gray-200 dark:border-gray-700 shadow-xl overflow-hidden animate-fade-in-up">
               <div class="p-2 flex flex-col gap-1">
                 <button
-
+                  (click)="toggleLanguage()"
                   class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-left text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#253831] transition-colors"
                 >
                   <span class="material-symbols-outlined text-[20px]">translate</span>
-                  <span>{{ true ? 'English' : 'Bahasa Melayu' }}</span>
+                  <span>{{ this.translateService.isEnglish() ? ('header.language.english' | translate) : ('header.language.bahasaMelayu' | translate) }}</span>
                 </button>
 
                 <button
@@ -46,7 +48,7 @@
                   class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-left text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#253831] transition-colors"
                 >
                   <span class="material-symbols-outlined text-[20px]">{{ themeService.isDark() ? 'light_mode' : 'dark_mode' }}</span>
-                  <span>{{ themeService.isDark() ? 'Light Mode' : 'Dark Mode' }}</span>
+                  <span>{{ themeService.isDark() ? ('header.theme.lightMode' | translate) : ('header.theme.darkMode' | translate) }}</span>
                 </button>
 
                 <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
@@ -57,7 +59,7 @@
                   class="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-left text-sm font-bold text-[#0d1b17] bg-primary hover:bg-[#0fd693] transition-colors"
                 >
                   <span class="material-symbols-outlined text-[20px]">login</span>
-                  <span>Start Journaling</span>
+                  <span>{{ 'landing.hero.cta' | translate}}</span>
                 </a>
               </div>
             </div>
@@ -79,16 +81,16 @@
       </div>
       <div class="relative z-20 container mx-auto px-6 text-center text-white">
         <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6 leading-tight max-w-5xl mx-auto">
-          Chronicle Your Journey.
+          {{ 'landing.hero.title' | translate}}
         </h1>
 
         <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-          A minimalist sanctuary for your travel memories. Capture the essence of every destination with distraction-free journaling.
+          {{ 'landing.hero.subtitle' | translate}}
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a routerLink="/login" class="h-12 px-8 rounded-full bg-white text-slate-900 font-bold hover:bg-slate-100 transition-colors w-full sm:w-auto flex items-center justify-center">
-            Start Journaling
+            {{ 'landing.hero.cta' | translate}}
           </a>
         </div>
       </div>
@@ -102,10 +104,10 @@
         <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div class="max-w-xl">
             <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-4 tracking-tight">
-              Highlighted Destinations
+              {{ 'landing.featured.title' | translate}}
             </h2>
             <p class="text-slate-500 dark:text-slate-400 text-lg">
-              Curated experiences from our community of global wanderers.
+              {{ 'landing.featured.subtitle' | translate}}
             </p>
           </div>
         </div>
@@ -126,7 +128,7 @@
               <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-1 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors">
                 {{ dest.title }}
               </h3>
-              <p class="text-slate-500 dark:text-slate-400">{{ dest.location }} • {{ dest.entries }} Entries</p>
+              <p class="text-slate-500 dark:text-slate-400">{{ dest.location }} • {{ dest.entries }} {{ 'landing.entries' | translate }}</p>
             </div>
           }
         </div>
@@ -136,10 +138,10 @@
     <section class="py-24 bg-slate-50 dark:bg-surface-dark">
       <div class="container mx-auto px-6 lg:px-12 max-w-[1440px]">
         <div class="text-center max-w-3xl mx-auto mb-20">
-          <span class="text-primary font-bold tracking-widest uppercase text-sm mb-2 block">Latest Entries</span>
-          <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">Event Journals</h2>
+          <span class="text-primary font-bold tracking-widest uppercase text-sm mb-2 block">{{ 'landing.journals.badge' | translate }}</span>
+          <h2 class="text-4xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">{{ 'landing.journals.title' | translate }}</h2>
           <p class="text-slate-500 dark:text-slate-400 text-lg">
-            Dive into the personal narratives of travelers exploring the unknown. Real stories, unfiltered moments.
+            {{ 'landing.journals.subtitle' | translate }}
           </p>
         </div>
 
@@ -181,13 +183,13 @@
         />
       </div>
       <div class="container mx-auto px-6 relative z-10 text-center">
-        <h2 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight">Your story deserves a stage.</h2>
-        <p class="text-slate-400 text-xl max-w-2xl mx-auto mb-10">Join thousands of travelers documenting their journey with TrailBlaze.</p>
+        <h2 class="text-4xl md:text-6xl font-bold mb-6 tracking-tight">{{ 'landing.cta.title' | translate }}</h2>
+        <p class="text-slate-400 text-xl max-w-2xl mx-auto mb-10">{{ 'landing.cta.subtitle' | translate }}</p>
         <a
           routerLink="/signup"
           class="inline-block bg-white text-slate-900 px-10 py-4 rounded-full font-bold text-lg hover:bg-primary hover:text-white transition-all transform hover:scale-105 shadow-2xl shadow-white/10"
         >
-          Start Your Journal Free
+          {{ 'landing.cta.button' | translate }}
         </a>
       </div>
     </section>

@@ -1,0 +1,44 @@
+{
+  "landing": {
+    "hero": {
+      "title": "Chronicle Your Journey.",
+      "subtitle": "A minimalist sanctuary for your travel memories. Capture the essence of every destination with distraction-free journaling.",
+      "cta": "Start Journaling"
+    },
+    "featured": {
+      "title": "Highlighted Destinations",
+      "subtitle": "Curated experiences from our community of global wanderers."
+    },
+    "journals": {
+      "badge": "Latest Entries",
+      "title": "Event Journals",
+      "subtitle": "Dive into the personal narratives of travelers exploring the unknown. Real stories, unfiltered moments."
+    },
+    "cta": {
+      "title": "Your story deserves a stage.",
+      "subtitle": "Join thousands of travelers documenting their journey with TrailBlaze.",
+      "button": "Start Your Journal Free"
+    },
+    "entries": "Entries"
+  },
+  "header": {
+    "language": {
+      "en": "EN",
+      "bm": "BM",
+      "english": "English",
+      "bahasaMelayu": "Bahasa Melayu"
+    },
+    "theme": {
+      "lightMode": "Light Mode",
+      "darkMode": "Dark Mode"
+    }
+  },
+  "footer": {
+    "tagline": "Crafting the digital home for the modern explorer. Based in San Francisco, capturing the world.",
+    "contact": {
+      "title": "Contact",
+      "partnerships": "Partnerships"
+    },
+    "copyright": "All rights reserved."
+  }
+}
