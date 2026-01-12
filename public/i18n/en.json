@@ -73,5 +73,10 @@
     "signupPasswordPlaceholder": "Create a password (min 8 characters)",
     "creatingAccount": "Creating Account...",
     "hasAccount": "Already have an account?"
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "Oops! The trail you're looking for doesn't exist. Let's get you back on track.",
+    "backHome": "Back to Home"
   }
 }

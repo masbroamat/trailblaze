@@ -73,5 +73,10 @@
     "signupPasswordPlaceholder": "Cipta kata laluan (min 8 aksara)",
     "creatingAccount": "Mencipta Akaun...",
     "hasAccount": "Sudah mempunyai akaun?"
+  },
+  "notFound": {
+    "title": "Halaman Tidak Dijumpai",
+    "description": "Oops! Laluan yang anda cari tidak wujud. Mari kami bawa anda kembali ke landasan.",
+    "backHome": "Kembali ke Laman Utama"
   }
 }
