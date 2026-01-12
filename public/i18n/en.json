@@ -140,7 +140,106 @@
       "cancel": "Keep it"
     }
   },
+  "profile": {
+    "title": "Profile",
+    "theme": "Theme",
+    "version": "TrailBlaze Pro v2.4.1",
+    "lastSynced": "Last synced today",
+    "manageInfo": "Manage your personal information and account settings.",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
+    "themeSelection": {
+      "title": "Theme Selection",
+      "subtitle": "Customize your visual experience with a theme that fits your vibe."
+    },
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "syncSystem": "Sync with System",
+    "syncSystemDescription": "Automatically switch theme to match your system settings"
+  },
+  "trip": {
+    "tableOfContents": "Table of Contents",
+    "intro": "Intro",
+    "stats": {
+      "title": "Trip Stats",
+      "duration": "Duration",
+      "days": "Days",
+      "entries": "Entries",
+      "photos": "Photos",
+      "location": "Location"
+    },
+    "day": "Day",
+    "noEntries": "No journal entries yet",
+    "startDocumenting": "Start documenting your adventure!",
+    "addEntry": "Add Entry",
+    "backToJournals": "Back to All Journals",
+    "actions": {
+      "share": "Share this entry",
+      "edit": "Edit this entry",
+      "delete": "Delete this entry"
+    },
+    "deleteEntry": {
+      "title": "Delete Entry?",
+      "message": "Are you sure you want to remove this journal entry? This action cannot be undone.",
+      "confirm": "Delete",
+      "cancel": "Keep it"
+    },
+    "editEntry": {
+      "title": "Edit Entry",
+      "day": "Day",
+      "entryTitle": "Title",
+      "location": "Location",
+      "content": "Content",
+      "photos": "Photos (click to mark for deletion)",
+      "photosToDelete": "{{count}} photo(s) will be deleted",
+      "cancel": "Cancel",
+      "saving": "Saving...",
+      "saveChanges": "Save Changes"
+    },
+    "formatting": {
+      "bold": "Bold",
+      "italic": "Italic",
+      "underline": "Underline",
+      "bulletList": "Bullet List",
+      "quote": "Quote"
+    },
+    "photo": {
+      "restore": "restore",
+      "delete": "delete",
+      "fullSize": "Full size photo"
+    }
+  },
   "toast": {
+    "entryDeleted": {
+      "title": "Entry deleted",
+      "message": "The journal entry has been removed."
+    },
+    "entryDeleteFailed": {
+      "title": "Delete failed",
+      "message": "Could not delete entry."
+    },
+    "linkCopied": {
+      "title": "Link copied",
+      "message": "The link has been copied to your clipboard!"
+    },
+    "copyFailed": {
+      "title": "Copy failed",
+      "message": "Could not copy link to clipboard."
+    },
+    "entryUpdated": {
+      "title": "Entry updated",
+      "message": "Your changes have been saved."
+    },
+    "entryUpdateFailed": {
+      "title": "Update failed",
+      "message": "Could not save changes."
+    },
+    "photoDeleteFailed": {
+      "title": "Delete failed",
+      "message": "Could not delete photos."
+    },
     "tripDeleted": {
       "title": "Trip deleted",
       "message": "Your journey has been removed successfully."
@@ -177,24 +276,5 @@
       "title": "Theme updated",
       "message": "Switched to {{theme}} mode."
     }
-  },
-  "profile": {
-    "title": "Profile",
-    "theme": "Theme",
-    "version": "TrailBlaze Pro v2.4.1",
-    "lastSynced": "Last synced today",
-    "manageInfo": "Manage your personal information and account settings.",
-    "edit": "Edit",
-    "cancel": "Cancel",
-    "saveChanges": "Save Changes",
-    "saving": "Saving...",
-    "themeSelection": {
-      "title": "Theme Selection",
-      "subtitle": "Customize your visual experience with a theme that fits your vibe."
-    },
-    "lightMode": "Light Mode",
-    "darkMode": "Dark Mode",
-    "syncSystem": "Sync with System",
-    "syncSystemDescription": "Automatically switch theme to match your system settings"
   }
 }

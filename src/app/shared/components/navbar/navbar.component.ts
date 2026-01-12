@@ -68,6 +68,10 @@ export class NavbarComponent implements OnInit {
   }
 
   scrollToJournals(): void {
+    if (this.currentPage === 'journals') {
+      return;
+    }
+    
     if (!this.router.url.includes('/dashboard')) {
       this.router.navigate(['/dashboard']).then(() => {
         setTimeout(() => this.doScroll(), 100);

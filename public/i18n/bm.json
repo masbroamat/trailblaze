@@ -140,7 +140,106 @@
       "cancel": "Simpan"
     }
   },
+  "profile": {
+    "title": "Profil",
+    "theme": "Tema",
+    "version": "TrailBlaze Pro v2.4.1",
+    "lastSynced": "Terakhir disegerakkan hari ini",
+    "manageInfo": "Urus maklumat peribadi dan tetapan akaun anda.",
+    "edit": "Sunting",
+    "cancel": "Batal",
+    "saveChanges": "Simpan Perubahan",
+    "saving": "Menyimpan...",
+    "themeSelection": {
+      "title": "Pilihan Tema",
+      "subtitle": "Sesuaikan pengalaman visual anda dengan tema yang sesuai dengan gaya anda."
+    },
+    "lightMode": "Mod Cerah",
+    "darkMode": "Mod Gelap",
+    "syncSystem": "Segerak dengan Sistem",
+    "syncSystemDescription": "Tukar tema secara automatik mengikut tetapan sistem anda"
+  },
+  "trip": {
+    "tableOfContents": "Isi Kandungan",
+    "intro": "Pengenalan",
+    "stats": {
+      "title": "Statistik Perjalanan",
+      "duration": "Tempoh",
+      "days": "Hari",
+      "entries": "Entri",
+      "photos": "Foto",
+      "location": "Lokasi"
+    },
+    "day": "Hari",
+    "noEntries": "Tiada entri jurnal lagi",
+    "startDocumenting": "Mula mendokumentasikan pengembaraan anda!",
+    "addEntry": "Tambah Entri",
+    "backToJournals": "Kembali ke Semua Jurnal",
+    "actions": {
+      "share": "Kongsi entri ini",
+      "edit": "Sunting entri ini",
+      "delete": "Padam entri ini"
+    },
+    "deleteEntry": {
+      "title": "Padam Entri?",
+      "message": "Adakah anda pasti mahu membuang entri jurnal ini? Tindakan ini tidak boleh dibatalkan.",
+      "confirm": "Padam",
+      "cancel": "Simpan"
+    },
+    "editEntry": {
+      "title": "Sunting Entri",
+      "day": "Hari",
+      "entryTitle": "Tajuk",
+      "location": "Lokasi",
+      "content": "Kandungan",
+      "photos": "Foto (klik untuk tanda padam)",
+      "photosToDelete": "{{count}} foto akan dipadam",
+      "cancel": "Batal",
+      "saving": "Menyimpan...",
+      "saveChanges": "Simpan Perubahan"
+    },
+    "formatting": {
+      "bold": "Tebal",
+      "italic": "Italik",
+      "underline": "Garis Bawah",
+      "bulletList": "Senarai Peluru",
+      "quote": "Petikan"
+    },
+    "photo": {
+      "restore": "pulihkan",
+      "delete": "padam",
+      "fullSize": "Foto saiz penuh"
+    }
+  },
   "toast": {
+    "entryDeleted": {
+      "title": "Entri dipadam",
+      "message": "Entri jurnal telah dibuang."
+    },
+    "entryDeleteFailed": {
+      "title": "Gagal memadam",
+      "message": "Tidak dapat memadam entri."
+    },
+    "linkCopied": {
+      "title": "Pautan disalin",
+      "message": "Pautan telah disalin ke papan keratan anda!"
+    },
+    "copyFailed": {
+      "title": "Gagal menyalin",
+      "message": "Tidak dapat menyalin pautan ke papan keratan."
+    },
+    "entryUpdated": {
+      "title": "Entri dikemas kini",
+      "message": "Perubahan anda telah disimpan."
+    },
+    "entryUpdateFailed": {
+      "title": "Kemas kini gagal",
+      "message": "Tidak dapat menyimpan perubahan."
+    },
+    "photoDeleteFailed": {
+      "title": "Gagal memadam",
+      "message": "Tidak dapat memadam foto."
+    },
     "tripDeleted": {
       "title": "Perjalanan dipadam",
       "message": "Perjalanan anda telah dibuang dengan jayanya."
@@ -177,24 +276,5 @@
       "title": "Tema dikemas kini",
       "message": "Bertukar ke mod {{theme}}."
     }
-  },
-  "profile": {
-    "title": "Profil",
-    "theme": "Tema",
-    "version": "TrailBlaze Pro v2.4.1",
-    "lastSynced": "Terakhir disegerakkan hari ini",
-    "manageInfo": "Urus maklumat peribadi dan tetapan akaun anda.",
-    "edit": "Sunting",
-    "cancel": "Batal",
-    "saveChanges": "Simpan Perubahan",
-    "saving": "Menyimpan...",
-    "themeSelection": {
-      "title": "Pilihan Tema",
-      "subtitle": "Sesuaikan pengalaman visual anda dengan tema yang sesuai dengan gaya anda."
-    },
-    "lightMode": "Mod Cerah",
-    "darkMode": "Mod Gelap",
-    "syncSystem": "Segerak dengan Sistem",
-    "syncSystemDescription": "Tukar tema secara automatik mengikut tetapan sistem anda"
   }
 }
