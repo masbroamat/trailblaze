@@ -1,0 +1,26 @@
+<div class="fixed top-24 right-6 z-[100] flex flex-col gap-3 max-w-sm">
+  @for (toast of toastService.toasts(); track toast.id) {
+    <div
+      class="bg-white dark:bg-card-dark p-4 rounded-xl shadow-lg border-l-4 flex items-start gap-4 transform hover:-translate-y-1 transition-transform duration-300 animate-fade-in"
+      [class]="getBorderColor(toast.type)"
+    >
+      <div
+        class="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0"
+        [class]="getIconBg(toast.type)"
+      >
+        <span class="material-symbols-outlined text-[20px]">{{ getIcon(toast.type) }}</span>
+      </div>
+      <div class="flex-1">
+        <h4 class="text-sm font-bold text-slate-900 dark:text-white">{{ toast.title }}</h4>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{{ toast.message }}</p>
+      </div>
+      <button
+        (click)="toastService.dismiss(toast.id)"
+        class="text-slate-400 hover:text-slate-600 dark:hover:text-white"
+      >
+        <span class="material-symbols-outlined text-[18px]">close</span>
+      </button>
+    </div>
+  }
+</div>
+

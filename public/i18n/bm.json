@@ -43,7 +43,8 @@
   },
   "common": {
     "back": "Kembali",
-    "copyright": "© {{year}} TrailBlaze Inc."
+    "copyright": "© {{year}} TrailBlaze Inc.",
+    "loading": "Memuatkan..."
   },
   "auth": {
     "photoOfTheDay": "Foto hari ini",
@@ -78,5 +79,49 @@
     "title": "Halaman Tidak Dijumpai",
     "description": "Oops! Laluan yang anda cari tidak wujud. Mari kami bawa anda kembali ke landasan.",
     "backHome": "Kembali ke Laman Utama"
+  },
+  "nav": {
+    "dashboard": "Papan Pemuka",
+    "myJournals": "Jurnal Saya",
+    "createTrip": "Cipta Perjalanan",
+    "profile": "Profil",
+    "logout": "Log Keluar"
+  },
+  "dashboard": {
+    "badge": "Jurnal Perjalanan Anda",
+    "welcome": "Selamat kembali",
+    "subtitle": "Teruskan mendokumentasikan pengembaraan anda dan kenang semula memori kegemaran anda.",
+    "searchPlaceholder": "Cari perjalanan mengikut tajuk atau lokasi...",
+    "year": "Tahun",
+    "sortBy": "Susun Mengikut",
+    "sort": {
+      "titleAsc": "Tajuk (A-Z)",
+      "titleDesc": "Tajuk (Z-A)",
+      "location": "Lokasi",
+      "newest": "Tarikh: Terbaru Dahulu",
+      "oldest": "Tarikh: Terlama Dahulu"
+    },
+    "public": "Awam",
+    "private": "Peribadi",
+    "noTrips": {
+      "title": "Tiada perjalanan lagi",
+      "description": "Anda belum mendokumentasikan sebarang perjalanan. Mulakan perjalanan pertama anda!"
+    },
+    "deleteTrip": {
+      "title": "Padam Perjalanan?",
+      "message": "Adakah anda pasti mahu membuang perjalanan ini? Tindakan ini tidak boleh dibatalkan dan semua kenangan akan hilang.",
+      "confirm": "Padam",
+      "cancel": "Simpan"
+    }
+  },
+  "toast": {
+    "tripDeleted": {
+      "title": "Perjalanan dipadam",
+      "message": "Perjalanan anda telah dibuang dengan jayanya."
+    },
+    "deleteFailed": {
+      "title": "Gagal memadam",
+      "message": "Gagal memadam perjalanan. Sila cuba lagi."
+    }
   }
 }

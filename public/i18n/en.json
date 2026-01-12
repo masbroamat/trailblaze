@@ -43,7 +43,8 @@
   },
   "common": {
     "back": "Back",
-    "copyright": "© {{year}} TrailBlaze Inc."
+    "copyright": "© {{year}} TrailBlaze Inc.",
+    "loading": "Loading..."
   },
   "auth": {
     "photoOfTheDay": "Photo of the day",
@@ -78,5 +79,49 @@
     "title": "Page Not Found",
     "description": "Oops! The trail you're looking for doesn't exist. Let's get you back on track.",
     "backHome": "Back to Home"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "myJournals": "My Journals",
+    "createTrip": "Create Trip",
+    "profile": "Profile",
+    "logout": "Logout"
+  },
+  "dashboard": {
+    "badge": "Your Travel Journal",
+    "welcome": "Welcome back",
+    "subtitle": "Continue documenting your adventures and relive your favorite memories.",
+    "searchPlaceholder": "Search trips by title or location...",
+    "year": "Year",
+    "sortBy": "Sort By",
+    "sort": {
+      "titleAsc": "Title (A-Z)",
+      "titleDesc": "Title (Z-A)",
+      "location": "Location",
+      "newest": "Date: Newest First",
+      "oldest": "Date: Oldest First"
+    },
+    "public": "Public",
+    "private": "Private",
+    "noTrips": {
+      "title": "No trips yet",
+      "description": "You haven't documented any trips yet. Start your first journey!"
+    },
+    "deleteTrip": {
+      "title": "Delete Trip?",
+      "message": "Are you sure you want to remove this trip? This action cannot be undone and all memories will be lost.",
+      "confirm": "Delete",
+      "cancel": "Keep it"
+    }
+  },
+  "toast": {
+    "tripDeleted": {
+      "title": "Trip deleted",
+      "message": "Your journey has been removed successfully."
+    },
+    "deleteFailed": {
+      "title": "Delete failed",
+      "message": "Failed to delete trip. Please try again."
+    }
   }
 }

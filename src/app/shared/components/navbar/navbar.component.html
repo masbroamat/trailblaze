@@ -1,0 +1,92 @@
+<header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-background-light/80 dark:bg-background-dark/80 border-b border-[#e7f3ef] dark:border-[#1f362e] transition-all duration-300">
+  <div class="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-6 lg:px-12">
+    <a routerLink="/dashboard" class="flex items-center gap-3 group cursor-pointer">
+      <div class="flex size-8 items-center justify-center rounded-lg bg-primary text-black transition-transform group-hover:rotate-12">
+        <span class="material-symbols-outlined text-[20px] font-bold">explore</span>
+      </div>
+      <h2 class="text-xl font-bold tracking-tight text-zinc-950 dark:text-white">TrailBlaze</h2>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a
+        routerLink="/dashboard"
+        class="relative text-sm font-medium transition-colors"
+        [ngClass]="{
+          'font-bold text-black dark:text-white': currentPage === 'dashboard',
+          'text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white': currentPage !== 'dashboard'
+        }">
+        {{ 'nav.dashboard' | translate}}
+        <span *ngIf="currentPage === 'dashboard'" class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary rounded-full"></span>
+      </a>
+      <button
+        (click)="scrollToJournals()"
+        class="text-sm font-medium transition-colors cursor-pointer"
+        [ngClass]="{
+          'font-bold text-black dark:text-white': currentPage === 'journals',
+          'text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white': currentPage !== 'journals'
+        }">
+        {{ 'nav.myJournals' | translate }}
+        <span *ngIf="currentPage === 'journals'" class="absolute -bottom-1 left-0 w-full h-0.5 bg-primary rounded-full"></span>
+      </button>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <button
+        (click)="toggleLanguage()"
+        class="hidden sm:flex h-10 items-center justify-center gap-2 rounded-2xl bg-white dark:bg-surface-dark px-3 text-sm font-semibold text-gray-700 dark:text-gray-200 border border-transparent hover:border-gray-200 dark:hover:border-gray-700 transition-all"
+      >
+        <span class="material-symbols-outlined text-[18px]">translate</span>
+        <span>{{ translateService.isEnglish() ? 'EN' : 'BM' }}</span>
+      </button>
+
+      <button
+        (click)="toggleTheme()"
+        class="flex size-10 items-center justify-center rounded-2xl bg-white dark:bg-surface-dark text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#253831] transition-colors"
+      >
+        <span class="material-symbols-outlined text-[20px]">{{ themeService.isDark() ? 'light_mode' : 'dark_mode' }}</span>
+      </button>
+
+      <a
+        *ngIf="showCreateTrip"
+        routerLink="/create-trip"
+        class="hidden md:flex h-10 items-center gap-2 rounded-2xl bg-primary px-5 text-sm font-bold text-[#0d1b17] shadow-sm shadow-primary/20 hover:bg-[#0fd693] hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300"
+      >
+        <span class="material-symbols-outlined text-[20px]">add</span>
+        <span>{{ 'nav.createTrip' | translate}}</span>
+      </a>
+
+      <div class="relative" (clickOutside)="closeUserMenu()">
+        <button
+          (click)="toggleUserMenu()"
+          aria-label="User menu"
+          class="ml-2 size-10 overflow-hidden rounded-full border-2 border-primary shadow-sm cursor-pointer hover:opacity-80 transition-opacity ring-2 ring-primary/20"
+        >
+          <div class="h-full w-full bg-primary/20 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined">person</span>
+          </div>
+        </button>
+
+        <div
+          *ngIf="showUserMenu"
+          class="absolute right-0 top-full mt-2 w-48 rounded-2xl bg-white dark:bg-surface-dark shadow-lg border border-gray-100 dark:border-[#253831] overflow-hidden z-50 animate-fade-in"
+        >
+          <a
+            routerLink="/profile"
+            (click)="showUserMenu = false"
+            class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-[#253831] transition-colors"
+          >
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            {{ 'nav.profile' | translate}}
+          </a>
+          <button
+            (click)="logout()"
+            class="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors"
+          >
+            <span class="material-symbols-outlined text-[20px]">logout</span>
+            {{ 'nav.logout' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
