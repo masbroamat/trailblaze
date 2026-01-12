@@ -1,8 +1,9 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ThemeService } from '../../../core/services/theme.service';
 import { AuthService } from '../../../core/services/auth.service';
+import { ProfileService } from '../../../core/services/profile.service';
 import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 import { TranslationService } from '../../../core/services/translation.service';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -13,16 +14,28 @@ import { TranslatePipe } from '@ngx-translate/core';
   imports: [CommonModule, RouterLink, ClickOutsideDirective, TranslatePipe],
   templateUrl: './navbar.component.html'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
   @Input() showCreateTrip = true;
   @Input() currentPage: 'dashboard' | 'journals' | 'profile' | 'other' = 'dashboard';
 
   themeService = inject(ThemeService);
   translateService = inject(TranslationService);
   authService = inject(AuthService);
+  profileService = inject(ProfileService);
   router = inject(Router);
 
   showUserMenu = false;
+  showMobileMenu = false;
+  profileImageUrl: string | null = null;
+
+  ngOnInit(): void {
+    this.loadProfileImage();
+  }
+
+  private loadProfileImage(): void {
+    const storedImageUrl = sessionStorage.getItem('auth_profileImageUrl');
+    this.profileImageUrl = storedImageUrl ? this.profileService.getProfileImageUrl(storedImageUrl) : null;
+  }
 
   toggleTheme(): void {
     this.themeService.toggleTheme();
@@ -34,10 +47,24 @@ export class NavbarComponent {
 
   toggleUserMenu(): void {
     this.showUserMenu = !this.showUserMenu;
+    if (this.showUserMenu) {
+      this.showMobileMenu = false;
+    }
   }
 
   closeUserMenu(): void {
     this.showUserMenu = false;
+  }
+
+  toggleMobileMenu(): void {
+    this.showMobileMenu = !this.showMobileMenu;
+    if (this.showMobileMenu) {
+      this.showUserMenu = false;
+    }
+  }
+
+  closeMobileMenu(): void {
+    this.showMobileMenu = false;
   }
 
   scrollToJournals(): void {
@@ -61,8 +88,7 @@ export class NavbarComponent {
 
   logout(): void {
     this.authService.logout();
+    this.closeMobileMenu();
     this.router.navigate(['/login']);
   }
-
 }
-

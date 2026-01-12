@@ -1,10 +1,10 @@
-<header class="sticky top-0 z-50 w-full backdrop-blur-xl bg-background-light/80 dark:bg-background-dark/80 border-b border-[#e7f3ef] dark:border-[#1f362e] transition-all duration-300">
-  <div class="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-6 lg:px-12">
-    <a routerLink="/dashboard" class="flex items-center gap-3 group cursor-pointer">
+<header class="sticky top-0 z-60 w-full backdrop-blur-xl bg-background-light/80 dark:bg-background-dark/80 border-b border-[#e7f3ef] dark:border-[#1f362e] transition-all duration-300">
+  <div class="mx-auto flex h-16 md:h-20 max-w-[1440px] items-center justify-between px-4 md:px-6 lg:px-12">
+    <a routerLink="/dashboard" class="flex items-center gap-2 md:gap-3 group cursor-pointer">
       <div class="flex size-8 items-center justify-center rounded-lg bg-primary text-black transition-transform group-hover:rotate-12">
         <span class="material-symbols-outlined text-[20px] font-bold">explore</span>
       </div>
-      <h2 class="text-xl font-bold tracking-tight text-zinc-950 dark:text-white">TrailBlaze</h2>
+      <h2 class="text-lg md:text-xl font-bold tracking-tight text-zinc-950 dark:text-white">TrailBlaze</h2>
     </a>
 
     <nav class="hidden md:flex items-center gap-8">
@@ -30,10 +30,10 @@
       </button>
     </nav>
 
-    <div class="flex items-center gap-3">
+    <div class="hidden md:flex items-center gap-3">
       <button
         (click)="toggleLanguage()"
-        class="hidden sm:flex h-10 items-center justify-center gap-2 rounded-2xl bg-white dark:bg-surface-dark px-3 text-sm font-semibold text-gray-700 dark:text-gray-200 border border-transparent hover:border-gray-200 dark:hover:border-gray-700 transition-all"
+        class="flex h-10 items-center justify-center gap-2 rounded-2xl bg-white dark:bg-surface-dark px-3 text-sm font-semibold text-gray-700 dark:text-gray-200 border border-transparent hover:border-gray-200 dark:hover:border-gray-700 transition-all"
       >
         <span class="material-symbols-outlined text-[18px]">translate</span>
         <span>{{ translateService.isEnglish() ? 'EN' : 'BM' }}</span>
@@ -49,7 +49,7 @@
       <a
         *ngIf="showCreateTrip"
         routerLink="/create-trip"
-        class="hidden md:flex h-10 items-center gap-2 rounded-2xl bg-primary px-5 text-sm font-bold text-[#0d1b17] shadow-sm shadow-primary/20 hover:bg-[#0fd693] hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300"
+        class="flex h-10 items-center gap-2 rounded-2xl bg-primary px-5 text-sm font-bold text-[#0d1b17] shadow-sm shadow-primary/20 hover:bg-[#0fd693] hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300"
       >
         <span class="material-symbols-outlined text-[20px]">add</span>
         <span>{{ 'nav.createTrip' | translate}}</span>
@@ -61,7 +61,13 @@
           aria-label="User menu"
           class="ml-2 size-10 overflow-hidden rounded-full border-2 border-primary shadow-sm cursor-pointer hover:opacity-80 transition-opacity ring-2 ring-primary/20"
         >
-          <div class="h-full w-full bg-primary/20 flex items-center justify-center text-primary">
+          <img
+            *ngIf="profileImageUrl"
+            [src]="profileImageUrl"
+            alt="Profile"
+            class="h-full w-full object-cover"
+          />
+          <div *ngIf="!profileImageUrl" class="h-full w-full bg-primary/20 flex items-center justify-center text-primary">
             <span class="material-symbols-outlined">person</span>
           </div>
         </button>
@@ -88,5 +94,122 @@
         </div>
       </div>
     </div>
+
+    <div class="flex md:hidden items-center gap-2">
+      <div class="relative" (clickOutside)="closeUserMenu()">
+        <button
+          (click)="toggleUserMenu()"
+          aria-label="User menu"
+          class="size-9 overflow-hidden rounded-full border-2 border-primary shadow-sm cursor-pointer hover:opacity-80 transition-opacity ring-2 ring-primary/20"
+        >
+          <img
+            *ngIf="profileImageUrl"
+            [src]="profileImageUrl"
+            alt="Profile"
+            class="h-full w-full object-cover"
+          />
+          <div *ngIf="!profileImageUrl" class="h-full w-full bg-primary/20 flex items-center justify-center text-primary">
+            <span class="material-symbols-outlined text-[18px]">person</span>
+          </div>
+        </button>
+
+        <div
+          *ngIf="showUserMenu"
+          class="absolute right-0 top-full mt-2 w-48 rounded-2xl bg-white dark:bg-surface-dark shadow-lg border border-gray-100 dark:border-[#253831] overflow-hidden z-50 animate-fade-in"
+        >
+          <a
+            routerLink="/profile"
+            (click)="showUserMenu = false"
+            class="flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-[#253831] transition-colors"
+          >
+            <span class="material-symbols-outlined text-[20px]">person</span>
+            {{ 'nav.profile' | translate}}
+          </a>
+          <button
+            (click)="logout()"
+            class="w-full flex items-center gap-3 px-4 py-2.5 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-900/10 transition-colors"
+          >
+            <span class="material-symbols-outlined text-[20px]">logout</span>
+            {{ 'nav.logout' | translate}}
+          </button>
+        </div>
+      </div>
+
+      <button
+        (click)="toggleMobileMenu()"
+        class="flex size-9 items-center justify-center rounded-xl bg-white dark:bg-surface-dark text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#253831] transition-colors"
+        aria-label="Menu"
+      >
+        <span class="material-symbols-outlined text-[22px]">{{ showMobileMenu ? 'close' : 'menu' }}</span>
+      </button>
+    </div>
+  </div>
+
+  <div
+    *ngIf="showMobileMenu"
+    class="md:hidden absolute top-full left-0 w-full bg-white dark:bg-surface-dark border-b border-gray-100 dark:border-[#253831] shadow-lg animate-fade-in-up z-40"
+  >
+    <div class="px-4 py-4 space-y-2">
+      <a
+        routerLink="/dashboard"
+        (click)="closeMobileMenu()"
+        class="flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors"
+        [ngClass]="{
+          'bg-primary/10 text-primary font-bold': currentPage === 'dashboard',
+          'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5': currentPage !== 'dashboard'
+        }"
+      >
+        <span class="material-symbols-outlined text-[20px]">dashboard</span>
+        {{ 'nav.dashboard' | translate }}
+      </a>
+
+      <button
+        (click)="scrollToJournals(); closeMobileMenu()"
+        class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors"
+        [ngClass]="{
+          'bg-primary/10 text-primary font-bold': currentPage === 'journals',
+          'text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-white/5': currentPage !== 'journals'
+        }"
+      >
+        <span class="material-symbols-outlined text-[20px]">book</span>
+        {{ 'nav.myJournals' | translate }}
+      </button>
+
+      <div class="border-t border-gray-100 dark:border-gray-700 my-3"></div>
+
+      <div class="flex items-center gap-2 px-2">
+        <button
+          (click)="toggleLanguage()"
+          class="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+        >
+          <span class="material-symbols-outlined text-[18px]">translate</span>
+          <span>{{ translateService.isEnglish() ? ('header.language.english' | translate) : ('header.language.bahasaMelayu' | translate) }}</span>
+        </button>
+
+        <button
+          (click)="toggleTheme()"
+          class="flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-gray-50 dark:bg-white/5 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-white/10 transition-colors"
+        >
+          <span class="material-symbols-outlined text-[18px]">{{ themeService.isDark() ? 'light_mode' : 'dark_mode' }}</span>
+        </button>
+      </div>
+
+      <a
+        *ngIf="showCreateTrip"
+        routerLink="/create-trip"
+        (click)="closeMobileMenu()"
+        class="flex items-center justify-center gap-2 mx-2 mt-3 px-4 py-3 rounded-xl bg-primary text-sm font-bold text-[#0d1b17] shadow-sm shadow-primary/20 hover:bg-[#0fd693] transition-colors"
+      >
+        <span class="material-symbols-outlined text-[20px]">add</span>
+        {{ 'nav.createTrip' | translate }}
+      </a>
+    </div>
   </div>
 </header>
+
+<div
+  *ngIf="showMobileMenu"
+  (click)="closeMobileMenu()"
+  class="md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm z-50"
+  style="top: 64px;"
+></div>

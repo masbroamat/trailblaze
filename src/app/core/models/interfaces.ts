@@ -3,6 +3,14 @@ export interface AuthResponse {
   userId: number;
   username: string;
   fullName: string;
+  profilePicUrl?: string;
+}
+
+export interface ProfileUpdateResponse {
+  userId: number;
+  username: string;
+  fullName: string;
+  profilePicUrl?: string;
 }
 
 export interface RegisterRequest {

@@ -122,6 +122,34 @@
     "deleteFailed": {
       "title": "Delete failed",
       "message": "Failed to delete trip. Please try again."
+    },
+    "profileUpdated": {
+      "title": "Profile updated",
+      "message": "Your profile has been updated successfully."
+    },
+    "profileUpdateFailed": {
+      "title": "Update failed",
+      "message": "Failed to update profile. Please try again."
+    },
+    "invalidFile": {
+      "title": "Invalid file",
+      "message": "Please select a valid image file."
+    },
+    "fileTooLarge": {
+      "title": "File too large",
+      "message": "Image must be less than 5MB."
+    },
+    "sessionExpired": {
+      "title": "Session expired",
+      "message": "Please log in again to continue."
+    },
+    "validationError": {
+      "title": "Validation error",
+      "message": "Please fill in all required fields."
+    },
+    "themeUpdated": {
+      "title": "Theme updated",
+      "message": "Switched to {{theme}} mode."
     }
   },
   "profile": {
@@ -129,6 +157,11 @@
     "theme": "Theme",
     "version": "TrailBlaze Pro v2.4.1",
     "lastSynced": "Last synced today",
+    "manageInfo": "Manage your personal information and account settings.",
+    "edit": "Edit",
+    "cancel": "Cancel",
+    "saveChanges": "Save Changes",
+    "saving": "Saving...",
     "themeSelection": {
       "title": "Theme Selection",
       "subtitle": "Customize your visual experience with a theme that fits your vibe."

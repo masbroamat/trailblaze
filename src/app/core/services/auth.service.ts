@@ -31,8 +31,12 @@ export class AuthService {
       tap(response => {
         if (response.success && response.data.token) {
           sessionStorage.setItem(this.TOKEN_KEY, response.data.token);
+          sessionStorage.setItem("auth_userId", response.data.userId.toString());
           sessionStorage.setItem("auth_username", response.data.username);
           sessionStorage.setItem("auth_fullName", response.data.fullName);
+          if (response.data.profilePicUrl) {
+            sessionStorage.setItem("auth_profileImageUrl", response.data.profilePicUrl);
+          }
           this.isLoggedIn$.next(true);
         }
       })
@@ -41,9 +45,16 @@ export class AuthService {
 
   logout() {
     sessionStorage.removeItem(this.TOKEN_KEY);
+    sessionStorage.removeItem("auth_userId");
     sessionStorage.removeItem("auth_username");
     sessionStorage.removeItem("auth_fullName");
+    sessionStorage.removeItem("auth_profileImageUrl");
     this.isLoggedIn$.next(false);
+  }
+
+  getUserId(): number | null {
+    const id = sessionStorage.getItem("auth_userId");
+    return id ? parseInt(id, 10) : null;
   }
 
   getToken(): string | null {

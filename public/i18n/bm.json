@@ -122,6 +122,34 @@
     "deleteFailed": {
       "title": "Gagal memadam",
       "message": "Gagal memadam perjalanan. Sila cuba lagi."
+    },
+    "profileUpdated": {
+      "title": "Profil dikemas kini",
+      "message": "Profil anda telah dikemas kini dengan jayanya."
+    },
+    "profileUpdateFailed": {
+      "title": "Kemas kini gagal",
+      "message": "Gagal mengemas kini profil. Sila cuba lagi."
+    },
+    "invalidFile": {
+      "title": "Fail tidak sah",
+      "message": "Sila pilih fail imej yang sah."
+    },
+    "fileTooLarge": {
+      "title": "Fail terlalu besar",
+      "message": "Imej mestilah kurang daripada 5MB."
+    },
+    "sessionExpired": {
+      "title": "Sesi tamat",
+      "message": "Sila log masuk semula untuk meneruskan."
+    },
+    "validationError": {
+      "title": "Ralat pengesahan",
+      "message": "Sila isi semua medan yang diperlukan."
+    },
+    "themeUpdated": {
+      "title": "Tema dikemas kini",
+      "message": "Bertukar ke mod {{theme}}."
     }
   },
   "profile": {
@@ -129,6 +157,11 @@
     "theme": "Tema",
     "version": "TrailBlaze Pro v2.4.1",
     "lastSynced": "Terakhir disegerakkan hari ini",
+    "manageInfo": "Urus maklumat peribadi dan tetapan akaun anda.",
+    "edit": "Sunting",
+    "cancel": "Batal",
+    "saveChanges": "Simpan Perubahan",
+    "saving": "Menyimpan...",
     "themeSelection": {
       "title": "Pilihan Tema",
       "subtitle": "Sesuaikan pengalaman visual anda dengan tema yang sesuai dengan gaya anda."
