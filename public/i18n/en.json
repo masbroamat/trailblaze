@@ -44,7 +44,33 @@
   "common": {
     "back": "Back",
     "copyright": "© {{year}} TrailBlaze Inc.",
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "cancel": "Cancel"
+  },
+  "createTrip": {
+    "title": "New Adventure",
+    "tripTitle": "Trip Title",
+    "tripTitlePlaceholder": "Where did you go?",
+    "tripTitleRequired": "Title is required",
+    "location": "Location",
+    "locationPlaceholder": "City, Country",
+    "locationRequired": "Location is required",
+    "startDate": "Start Date",
+    "startDatePlaceholder": "Select start date",
+    "startDateRequired": "Start date is required",
+    "endDate": "End Date",
+    "endDatePlaceholder": "Select end date",
+    "endDateRequired": "End date is required",
+    "visibility": "Visibility",
+    "visibilityPrivate": "Private (Only me)",
+    "visibilityPublic": "Public (Everyone)",
+    "coverPhoto": {
+      "title": "Drop your cover photo here",
+      "subtitle": "Drag and drop or",
+      "browse": "browse files"
+    },
+    "submit": "Save Journey",
+    "submitting": "Creating..."
   },
   "auth": {
     "photoOfTheDay": "Photo of the day",

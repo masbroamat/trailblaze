@@ -1,1 +1,261 @@
-<p>create-trip works!</p>
+<div class="min-h-screen bg-background-light dark:bg-background-dark">
+  <app-navbar [showCreateTrip]="false" [currentPage]="'other'"></app-navbar>
+
+  <div class="flex items-center justify-center py-12 px-4">
+    <div class="relative bg-white dark:bg-card-dark rounded-xl shadow-soft-xl border border-slate-100 dark:border-slate-800 overflow-hidden w-full max-w-2xl">
+      <div class="flex justify-between items-center p-6 pb-2">
+        <h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">{{ 'createTrip.title' | translate }}</h3>
+        <a routerLink="/dashboard" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors">
+          <span class="material-symbols-outlined">close</span>
+        </a>
+      </div>
+
+      <form [formGroup]="tripForm" (ngSubmit)="onSubmit()" class="p-6 pt-2 flex flex-col gap-6">
+        <div class="flex flex-col md:flex-row gap-4">
+          <label class="flex flex-col flex-1 gap-2">
+            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">{{ 'createTrip.tripTitle' | translate }}</span>
+            <input
+              formControlName="title"
+              class="w-full h-12 px-4 bg-background-light dark:bg-background-dark rounded-lg border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-slate-400 dark:text-white"
+              [placeholder]="'createTrip.tripTitlePlaceholder' | translate"
+              type="text"
+            />
+            <span *ngIf="tripFormControl['title'].touched && tripFormControl['title'].errors?.['required']" class="text-red-500 text-xs">
+              {{ 'createTrip.tripTitleRequired' | translate }}
+            </span>
+          </label>
+
+          <label class="flex flex-col flex-1 gap-2">
+            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">{{ 'createTrip.location' | translate }}</span>
+            <div class="relative">
+              <input
+                formControlName="location"
+                class="w-full h-12 px-4 bg-background-light dark:bg-background-dark rounded-lg border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all placeholder:text-slate-400 dark:text-white"
+                [placeholder]="'createTrip.locationPlaceholder' | translate"
+                type="text"
+              />
+              <span class="material-symbols-outlined absolute right-3 top-3 text-slate-400 pointer-events-none">location_on</span>
+            </div>
+            <span *ngIf="tripFormControl['location'].touched && tripFormControl['location'].errors?.['required']" class="text-red-500 text-xs">
+              {{ 'createTrip.locationRequired' | translate }}
+            </span>
+          </label>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-4">
+          <div class="flex flex-col flex-1 gap-2">
+            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">{{ 'createTrip.startDate' | translate }}</span>
+            <div class="relative" clickOutside (clickOutside)="closeStartDatePicker()">
+              <button
+                type="button"
+                (click)="toggleStartDatePicker()"
+                class="w-full h-12 px-4 bg-background-light dark:bg-background-dark rounded-lg border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-left flex items-center justify-between"
+                [ngClass]="{'text-slate-400': !tripForm.get('startDate')?.value, 'text-slate-900 dark:text-white': tripForm.get('startDate')?.value}"
+              >
+                <span>{{ tripForm.get('startDate')?.value ? formatDisplayDate(tripForm.get('startDate')?.value) : ('createTrip.startDatePlaceholder' | translate) }}</span>
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">calendar_today</span>
+              </button>
+
+              <div
+                *ngIf="showStartDatePicker"
+                class="absolute top-full left-0 mt-2 w-72 bg-white dark:bg-surface-dark rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 z-50 overflow-hidden animate-fade-in"
+              >
+                <div class="flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-700">
+                  <button type="button" (click)="prevMonth('start')" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">chevron_left</span>
+                  </button>
+                  <span class="font-semibold text-slate-900 dark:text-white">{{ getMonthYearString(startDateCalendarMonth) }}</span>
+                  <button type="button" (click)="nextMonth('start')" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">chevron_right</span>
+                  </button>
+                </div>
+
+                <div class="p-4">
+                  <div class="grid grid-cols-7 gap-1 mb-2">
+                    <span *ngFor="let day of ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']" class="text-center text-xs font-medium text-slate-400 py-1">{{ day }}</span>
+                  </div>
+                  <div class="grid grid-cols-7 gap-1">
+                    <ng-container *ngFor="let day of calendarDaysStart">
+                      <button
+                        *ngIf="day"
+                        type="button"
+                        (click)="selectDate(day, 'start')"
+                        class="size-9 rounded-lg text-sm font-medium transition-all flex items-center justify-center"
+                        [ngClass]="{
+                          'bg-primary text-black': isSelectedDate(day, 'start'),
+                          'ring-2 ring-primary/50': isToday(day, 'start') && !isSelectedDate(day, 'start'),
+                          'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10': !isSelectedDate(day, 'start')
+                        }"
+                      >
+                        {{ day }}
+                      </button>
+                      <span *ngIf="!day" class="size-9"></span>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span *ngIf="tripFormControl['startDate'].touched && tripFormControl['startDate'].errors?.['required']" class="text-red-500 text-xs">
+              {{ 'createTrip.startDateRequired' | translate }}
+            </span>
+          </div>
+
+          <div class="flex flex-col flex-1 gap-2">
+            <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">{{ 'createTrip.endDate' | translate }}</span>
+            <div class="relative" clickOutside (clickOutside)="closeEndDatePicker()">
+              <button
+                type="button"
+                (click)="toggleEndDatePicker()"
+                class="w-full h-12 px-4 bg-background-light dark:bg-background-dark rounded-lg border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-left flex items-center justify-between"
+                [ngClass]="{'text-slate-400': !tripForm.get('endDate')?.value, 'text-slate-900 dark:text-white': tripForm.get('endDate')?.value}"
+              >
+                <span>{{ tripForm.get('endDate')?.value ? formatDisplayDate(tripForm.get('endDate')?.value) : ('createTrip.endDatePlaceholder' | translate) }}</span>
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">calendar_today</span>
+              </button>
+
+              <div
+                *ngIf="showEndDatePicker"
+                class="absolute top-full left-0 mt-2 w-72 bg-white dark:bg-surface-dark rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 z-50 overflow-hidden animate-fade-in"
+              >
+                <div class="flex items-center justify-between p-4 border-b border-slate-100 dark:border-slate-700">
+                  <button type="button" (click)="prevMonth('end')" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">chevron_left</span>
+                  </button>
+                  <span class="font-semibold text-slate-900 dark:text-white">{{ getMonthYearString(endDateCalendarMonth) }}</span>
+                  <button type="button" (click)="nextMonth('end')" class="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-white/10 transition-colors">
+                    <span class="material-symbols-outlined text-slate-600 dark:text-slate-300">chevron_right</span>
+                  </button>
+                </div>
+
+                <div class="p-4">
+                  <div class="grid grid-cols-7 gap-1 mb-2">
+                    <span *ngFor="let day of ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']" class="text-center text-xs font-medium text-slate-400 py-1">{{ day }}</span>
+                  </div>
+                  <div class="grid grid-cols-7 gap-1">
+                    <ng-container *ngFor="let day of calendarDaysEnd">
+                      <button
+                        *ngIf="day"
+                        type="button"
+                        (click)="selectDate(day, 'end')"
+                        class="size-9 rounded-lg text-sm font-medium transition-all flex items-center justify-center"
+                        [ngClass]="{
+                          'bg-primary text-black': isSelectedDate(day, 'end'),
+                          'ring-2 ring-primary/50': isToday(day, 'end') && !isSelectedDate(day, 'end'),
+                          'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10': !isSelectedDate(day, 'end')
+                        }"
+                      >
+                        {{ day }}
+                      </button>
+                      <span *ngIf="!day" class="size-9"></span>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <span *ngIf="tripFormControl['endDate'].touched && tripFormControl['endDate'].errors?.['required']" class="text-red-500 text-xs">
+              {{ 'createTrip.endDateRequired' | translate }}
+            </span>
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-2">
+          <span class="text-sm font-semibold text-slate-700 dark:text-slate-300">{{ 'createTrip.visibility' | translate }}</span>
+          <div class="relative" clickOutside (clickOutside)="closeVisibilityDropdown()">
+            <button
+              type="button"
+              (click)="toggleVisibilityDropdown()"
+              class="w-full h-12 px-4 bg-background-light dark:bg-background-dark rounded-lg border border-slate-200 dark:border-slate-700 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all text-left flex items-center justify-between text-slate-900 dark:text-white"
+            >
+              <span class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-slate-400 text-[20px]">{{ getSelectedVisibility().icon }}</span>
+                {{ getSelectedVisibility().label | translate }}
+              </span>
+              <span class="material-symbols-outlined text-slate-400 text-[20px]">{{ showVisibilityDropdown ? 'keyboard_arrow_up' : 'keyboard_arrow_down' }}</span>
+            </button>
+
+            <div
+              *ngIf="showVisibilityDropdown"
+              class="absolute top-full left-0 mt-2 w-full bg-white dark:bg-surface-dark rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 z-50 overflow-hidden animate-fade-in"
+            >
+              <div class="py-1">
+                @for (option of visibilityOptions; track option.value) {
+                  <button
+                    type="button"
+                    (click)="selectVisibility(option.value)"
+                    class="w-full flex items-center gap-3 px-4 py-3 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-white/5 transition-colors"
+                    [ngClass]="{'bg-slate-50 dark:bg-white/5': tripForm.get('isPublic')?.value === option.value}"
+                  >
+                    <span class="material-symbols-outlined text-slate-400 text-[20px]">{{ option.icon }}</span>
+                    <span class="flex-1 text-left">{{ option.label | translate }}</span>
+                    <span class="material-symbols-outlined text-primary text-[18px]" [class.opacity-0]="tripForm.get('isPublic')?.value !== option.value">check</span>
+                  </button>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          (dragover)="onDragOver($event)"
+          (dragleave)="onDragLeave($event)"
+          (drop)="onDrop($event)"
+          class="group relative flex flex-col items-center justify-center p-8 border-2 border-dashed rounded-xl transition-all cursor-pointer"
+          [ngClass]="{
+            'border-primary bg-primary/10': isDragging,
+            'border-primary/40 bg-primary/5 hover:border-primary hover:bg-primary/10': !isDragging
+          }">
+          <input
+            type="file"
+            (change)="onFileSelected($event)"
+            accept="image/*"
+            class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+          />
+
+          <div *ngIf="!imagePreview" class="text-center">
+            <div class="w-12 h-12 rounded-full bg-white dark:bg-background-dark flex items-center justify-center mb-3 shadow-sm group-hover:scale-110 transition-transform duration-300 mx-auto">
+              <span class="material-symbols-outlined text-primary text-2xl">cloud_upload</span>
+            </div>
+            <p class="text-slate-900 dark:text-white font-bold text-lg">{{ 'createTrip.coverPhoto.title' | translate }}</p>
+            <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+              {{ 'createTrip.coverPhoto.subtitle' | translate }} <span class="text-primary font-semibold underline decoration-primary/50 underline-offset-4">{{ 'createTrip.coverPhoto.browse' | translate }}</span>
+            </p>
+          </div>
+
+          <div *ngIf="imagePreview" class="relative w-full">
+            <img [src]="imagePreview" alt="Preview" class="w-full h-48 object-cover rounded-lg" />
+            <button
+              type="button"
+              (click)="removeImage(); $event.stopPropagation()"
+              class="absolute top-2 right-2 p-2 bg-black/50 hover:bg-red-500 text-white rounded-full transition-colors"
+            >
+              <span class="material-symbols-outlined text-[16px]">close</span>
+            </button>
+          </div>
+        </div>
+
+        <div *ngIf="errorMessage" class="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-600 dark:text-red-400 px-4 py-3 rounded-xl text-sm">
+          {{ errorMessage }}
+        </div>
+
+        <div class="flex justify-end gap-3 border-t border-slate-100 dark:border-slate-800/50 pt-6 mt-2">
+          <a
+            routerLink="/dashboard"
+            class="px-6 py-2.5 rounded-lg text-sm font-semibold text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-white transition-colors"
+          >
+            {{ 'common.cancel' | translate }}
+          </a>
+          <button
+            type="submit"
+            [disabled]="tripForm.invalid || isSubmitting"
+            class="px-6 py-2.5 rounded-lg text-sm font-bold bg-primary text-background-dark hover:shadow-glow hover:brightness-105 transition-all flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <span class="material-symbols-outlined text-[18px]">save</span>
+            {{ isSubmitting ? ('createTrip.submitting' | translate) : ('createTrip.submit' | translate) }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <app-toast></app-toast>
+</div>

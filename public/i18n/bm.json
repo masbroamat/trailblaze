@@ -44,7 +44,33 @@
   "common": {
     "back": "Kembali",
     "copyright": "© {{year}} TrailBlaze Inc.",
-    "loading": "Memuatkan..."
+    "loading": "Memuatkan...",
+    "cancel": "Batal"
+  },
+  "createTrip": {
+    "title": "Pengembaraan Baru",
+    "tripTitle": "Tajuk Perjalanan",
+    "tripTitlePlaceholder": "Ke mana anda pergi?",
+    "tripTitleRequired": "Tajuk diperlukan",
+    "location": "Lokasi",
+    "locationPlaceholder": "Bandar, Negara",
+    "locationRequired": "Lokasi diperlukan",
+    "startDate": "Tarikh Mula",
+    "startDatePlaceholder": "Pilih tarikh mula",
+    "startDateRequired": "Tarikh mula diperlukan",
+    "endDate": "Tarikh Tamat",
+    "endDatePlaceholder": "Pilih tarikh tamat",
+    "endDateRequired": "Tarikh tamat diperlukan",
+    "visibility": "Keterlihatan",
+    "visibilityPrivate": "Peribadi (Saya sahaja)",
+    "visibilityPublic": "Awam (Semua orang)",
+    "coverPhoto": {
+      "title": "Lepaskan foto muka depan di sini",
+      "subtitle": "Seret dan lepas atau",
+      "browse": "semak imbas fail"
+    },
+    "submit": "Simpan Perjalanan",
+    "submitting": "Mencipta..."
   },
   "auth": {
     "photoOfTheDay": "Foto hari ini",
