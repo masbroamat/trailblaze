@@ -211,7 +211,43 @@
       "fullSize": "Foto saiz penuh"
     }
   },
+  "addEntry": {
+    "tripTimeline": "Garis Masa Perjalanan",
+    "newEntry": "Entri Baru",
+    "untitled": "Tanpa Tajuk",
+    "editingNow": "Sedang menyunting...",
+    "backToTrip": "Kembali ke Perjalanan",
+    "titlePlaceholder": "Masukkan tajuk...",
+    "dayNumber": "Nombor Hari",
+    "location": "Lokasi",
+    "locationPlaceholder": "cth. Menara Kyoto",
+    "contentPlaceholder": "Tulis kenangan anda... Apa yang berlaku hari ini? Apa yang anda lihat, rasa, alami?",
+    "formatting": {
+      "bold": "Tebal (Ctrl+B)",
+      "italic": "Italik (Ctrl+I)",
+      "underline": "Garis Bawah (Ctrl+U)",
+      "bulletList": "Senarai Peluru",
+      "quote": "Petikan"
+    },
+    "photoGallery": "Galeri Foto",
+    "photos": "Foto",
+    "cover": "Muka Depan",
+    "setAsCover": "Tetapkan sebagai Muka Depan",
+    "dropPhotos": "Lepaskan Foto Di Sini",
+    "clickOrDrop": "Klik atau Lepaskan Foto",
+    "fileInfo": "JPG, PNG sehingga 10MB",
+    "save": "Simpan Entri",
+    "saving": "Menyimpan..."
+  },
   "toast": {
+    "entryCreated": {
+      "title": "Entri dicipta",
+      "message": "Entri jurnal anda telah berjaya disimpan."
+    },
+    "entryCreateFailed": {
+      "title": "Gagal mencipta",
+      "message": "Tidak dapat mencipta entri. Sila cuba lagi."
+    },
     "entryDeleted": {
       "title": "Entri dipadam",
       "message": "Entri jurnal telah dibuang."

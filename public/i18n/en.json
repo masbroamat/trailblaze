@@ -211,7 +211,43 @@
       "fullSize": "Full size photo"
     }
   },
+  "addEntry": {
+    "tripTimeline": "Trip Timeline",
+    "newEntry": "New Entry",
+    "untitled": "Untitled",
+    "editingNow": "Editing now...",
+    "backToTrip": "Back to Trip",
+    "titlePlaceholder": "Enter a title...",
+    "dayNumber": "Day Number",
+    "location": "Location",
+    "locationPlaceholder": "e.g. Kyoto Tower",
+    "contentPlaceholder": "Write your memories... What happened today? What did you see, feel, experience?",
+    "formatting": {
+      "bold": "Bold (Ctrl+B)",
+      "italic": "Italic (Ctrl+I)",
+      "underline": "Underline (Ctrl+U)",
+      "bulletList": "Bullet List",
+      "quote": "Quote"
+    },
+    "photoGallery": "Photo Gallery",
+    "photos": "Photos",
+    "cover": "Cover",
+    "setAsCover": "Set as Cover",
+    "dropPhotos": "Drop Photos Here",
+    "clickOrDrop": "Click or Drop Photos",
+    "fileInfo": "JPG, PNG up to 10MB",
+    "save": "Save Entry",
+    "saving": "Saving..."
+  },
   "toast": {
+    "entryCreated": {
+      "title": "Entry created",
+      "message": "Your journal entry has been saved successfully."
+    },
+    "entryCreateFailed": {
+      "title": "Creation failed",
+      "message": "Could not create entry. Please try again."
+    },
     "entryDeleted": {
       "title": "Entry deleted",
       "message": "The journal entry has been removed."
