@@ -123,5 +123,19 @@
       "title": "Delete failed",
       "message": "Failed to delete trip. Please try again."
     }
+  },
+  "profile": {
+    "title": "Profile",
+    "theme": "Theme",
+    "version": "TrailBlaze Pro v2.4.1",
+    "lastSynced": "Last synced today",
+    "themeSelection": {
+      "title": "Theme Selection",
+      "subtitle": "Customize your visual experience with a theme that fits your vibe."
+    },
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "syncSystem": "Sync with System",
+    "syncSystemDescription": "Automatically switch theme to match your system settings"
   }
 }

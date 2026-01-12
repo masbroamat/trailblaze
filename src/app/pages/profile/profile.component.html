@@ -1,1 +1,243 @@
-<p>profile works!</p>
+<div class="bg-background-light dark:bg-background-dark text-text-main dark:text-white antialiased min-h-screen flex flex-col">
+  <header class="sticky top-0 z-50 w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-xl border-b border-[#e7f3ef] dark:border-[#1f362e]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a routerLink="/dashboard" class="flex items-center gap-3 group cursor-pointer">
+          <div class="flex size-8 items-center justify-center rounded-lg bg-primary text-black transition-transform group-hover:rotate-12">
+            <span class="material-symbols-outlined text-[20px] font-bold">explore</span>
+          </div>
+          <h1 class="text-xl font-bold tracking-tight text-zinc-950 dark:text-white">TrailBlaze</h1>
+        </a>
+
+        <div class="flex items-center gap-3">
+          <button
+            (click)="translateService.toggleLanguage()"
+            class="hidden sm:flex h-10 items-center justify-center gap-2 rounded-2xl bg-white dark:bg-surface-dark px-3 text-sm font-semibold text-gray-700 dark:text-gray-200 border border-transparent hover:border-gray-200 dark:hover:border-gray-700 transition-all"
+          >
+            <span class="material-symbols-outlined text-[18px]">translate</span>
+            <span>{{ translateService.isEnglish() ? 'EN' : 'BM' }}</span>
+          </button>
+          <button
+            (click)="themeService.toggleTheme()"
+            class="flex size-10 items-center justify-center rounded-2xl bg-white dark:bg-surface-dark text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-[#253831] transition-colors"
+          >
+            <span class="material-symbols-outlined text-[20px]">{{ themeService.isDark() ? 'light_mode' : 'dark_mode' }}</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-grow w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+      <nav class="w-full lg:w-64 shrink-0 lg:sticky lg:top-24">
+        <div class="flex lg:flex-col gap-2 overflow-x-auto pb-4 lg:pb-0 scrollbar-hide">
+          <button
+            (click)="setTab('profile')"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all min-w-[140px] lg:min-w-0"
+            [ngClass]="{
+              'bg-text-main text-white shadow-lg': currentTab === 'profile',
+              'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5': currentTab !== 'profile'
+            }">
+            <span class="material-symbols-outlined" [class.filled]="currentTab === 'profile'">person</span>
+            <span class="font-medium text-sm">{{ 'profile.title' | translate }}</span>
+          </button>
+
+          <button
+            (click)="setTab('theme')"
+            class="flex items-center gap-3 px-4 py-3 rounded-xl transition-all min-w-[140px] lg:min-w-0 group"
+            [ngClass]="{
+              'bg-text-main text-white shadow-lg': currentTab === 'theme',
+              'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5': currentTab !== 'theme'
+            }">
+            <span class="material-symbols-outlined" [class.filled]="currentTab === 'theme'" [ngClass]="{'group-hover:text-primary': currentTab !== 'theme'}">palette</span>
+            <span class="font-medium text-sm">{{ 'profile.theme' | translate }}</span>
+          </button>
+        </div>
+
+        <div class="mt-8 px-4 hidden lg:block">
+          <p class="text-xs text-gray-400">{{ 'profile.version' | translate }}</p>
+          <p class="text-xs text-gray-400 mt-1">{{ 'profile.lastSynced' | translate }}</p>
+        </div>
+      </nav>
+
+      <section *ngIf="currentTab === 'profile'" class="flex-1 w-full bg-surface-light dark:bg-surface-dark rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 overflow-hidden">
+        <div class="p-8 md:p-12 flex flex-col items-center">
+          <div class="relative group mb-10">
+            <div class="bg-primary/20 rounded-full size-36 shadow-soft flex items-center justify-center">
+              <span class="material-symbols-outlined text-6xl text-primary">person</span>
+            </div>
+            <button class="absolute bottom-1 right-1 bg-primary hover:bg-primary-dark text-white p-3 rounded-full shadow-lg transition-transform hover:scale-105 flex items-center justify-center border-4 border-surface-light dark:border-surface-dark">
+              <span class="material-symbols-outlined">edit</span>
+            </button>
+          </div>
+
+          <div class="w-full max-w-lg space-y-6">
+            <label class="flex flex-col gap-2">
+              <span class="text-sm font-medium text-text-main dark:text-gray-300">{{ 'auth.fullName' | translate }}</span>
+              <div class="relative">
+                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">badge</span>
+                <input
+                  disabled
+                  [(ngModel)]="fullName"
+                  class="w-full pl-10 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400"
+                  [placeholder]="'auth.fullNamePlaceholder' | translate"
+                  type="text"
+                  />
+                </div>
+              </label>
+
+              <label class="flex flex-col gap-2">
+                <span class="text-sm font-medium text-text-main dark:text-gray-300">{{ 'auth.username' | translate }}</span>
+                <div class="relative">
+                  <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-[20px]">alternate_email</span>
+                  <input
+                  disabled
+                  [(ngModel)]="username"
+                  class="w-full pl-10 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-gray-700 bg-background-light dark:bg-background-dark text-text-main dark:text-white focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-gray-400"
+                  [placeholder]="'auth.usernamePlaceholder' | translate"
+                  type="text"
+                />
+              </div>
+            </label>
+
+            <div class="pt-8">
+              <button
+                (click)="logout()"
+                class="w-full py-4 rounded-xl text-base font-bold bg-red-50 text-red-600 hover:bg-red-100 dark:bg-red-500/10 dark:text-red-400 dark:hover:bg-red-500/20 border border-red-100 dark:border-red-500/20 transition-all flex items-center justify-center gap-2 group"
+              >
+                <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">logout</span>
+                {{ 'nav.logout' | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section *ngIf="currentTab === 'theme'" class="flex-1 w-full bg-surface-light dark:bg-surface-dark rounded-2xl shadow-sm border border-gray-100 dark:border-white/5 overflow-hidden">
+        <div class="p-6 md:p-8 border-b border-gray-100 dark:border-white/5 flex justify-between items-center">
+          <div>
+            <h2 class="text-xl font-bold text-text-main dark:text-white">{{ 'profile.themeSelection.title' | translate }}</h2>
+            <p class="text-sm text-gray-500 mt-1">{{ 'profile.themeSelection.subtitle' | translate }}</p>
+          </div>
+        </div>
+
+        <div class="p-6 md:p-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <label class="group relative cursor-pointer block">
+              <input
+                type="radio"
+                name="theme"
+                value="light"
+                [checked]="!themeService.isDark()"
+                (change)="selectTheme('light')"
+                class="peer sr-only"
+              />
+              <div class="rounded-2xl border-2 border-gray-200 dark:border-white/10 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary overflow-hidden transition-all hover:border-primary/50 bg-background-light">
+                <div class="aspect-[16/10] w-full bg-gray-100 relative p-4 flex flex-col justify-center items-center">
+                  <div class="w-full h-full max-w-[85%] max-h-[85%] bg-white rounded-lg shadow-md flex flex-col overflow-hidden border border-gray-200">
+                    <div class="h-4 border-b border-gray-100 flex items-center px-2 gap-1 bg-white">
+                      <div class="size-1.5 rounded-full bg-red-400"></div>
+                      <div class="size-1.5 rounded-full bg-yellow-400"></div>
+                      <div class="size-1.5 rounded-full bg-green-400"></div>
+                    </div>
+                    <div class="flex-1 flex">
+                      <div class="w-1/4 h-full bg-gray-50 border-r border-gray-100 p-2 space-y-1.5">
+                        <div class="w-3/4 h-1.5 bg-slate-300 rounded-full mb-2"></div>
+                        <div class="w-full h-1 bg-slate-200 rounded-full"></div>
+                        <div class="w-5/6 h-1 bg-slate-200 rounded-full"></div>
+                      </div>
+                      <div class="flex-1 p-3 space-y-2 bg-white">
+                        <div class="w-1/3 h-2 bg-slate-800 rounded mb-2"></div>
+                        <div class="w-full h-10 bg-gray-50 rounded border border-gray-100"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 bg-white dark:bg-surface-dark flex items-center justify-between border-t border-gray-100 dark:border-white/5">
+                  <div class="flex items-center gap-3">
+                    <div class="p-1.5 rounded-md bg-gray-100 dark:bg-white/10 text-gray-500">
+                      <span class="material-symbols-outlined text-xl">light_mode</span>
+                    </div>
+                    <span class="font-medium text-text-main dark:text-white">{{ 'profile.lightMode' | translate }}</span>
+                  </div>
+                  <div class="size-5 rounded-full border border-gray-300 peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center transition-colors"
+                       [class.border-primary]="!themeService.isDark()"
+                       [class.bg-primary]="!themeService.isDark()">
+                    <div class="size-2 rounded-full bg-white" [class.opacity-0]="themeService.isDark()"></div>
+                  </div>
+                </div>
+              </div>
+            </label>
+
+            <label class="group relative cursor-pointer block">
+              <input
+                type="radio"
+                name="theme"
+                value="dark"
+                [checked]="themeService.isDark()"
+                (change)="selectTheme('dark')"
+                class="peer sr-only"
+              />
+              <div class="rounded-2xl border-2 border-gray-200 dark:border-white/10 peer-checked:border-primary peer-checked:ring-1 peer-checked:ring-primary overflow-hidden transition-all hover:border-primary/50 bg-background-dark">
+                <div class="aspect-[16/10] w-full bg-zinc-900 relative p-4 flex flex-col justify-center items-center">
+                  <div class="w-full h-full max-w-[85%] max-h-[85%] bg-zinc-950 rounded-lg shadow-md flex flex-col overflow-hidden border border-white/10">
+                    <div class="h-4 border-b border-white/5 flex items-center px-2 gap-1 bg-zinc-950">
+                      <div class="size-1.5 rounded-full bg-red-400/80"></div>
+                      <div class="size-1.5 rounded-full bg-yellow-400/80"></div>
+                      <div class="size-1.5 rounded-full bg-green-400/80"></div>
+                    </div>
+                    <div class="flex-1 flex">
+                      <div class="w-1/4 h-full bg-black/20 border-r border-white/5 p-2 space-y-1.5">
+                        <div class="w-3/4 h-1.5 bg-zinc-500 rounded-full mb-2"></div>
+                        <div class="w-full h-1 bg-zinc-800 rounded-full"></div>
+                        <div class="w-5/6 h-1 bg-zinc-800 rounded-full"></div>
+                      </div>
+                      <div class="flex-1 p-3 space-y-2 bg-zinc-950">
+                        <div class="w-1/3 h-2 bg-zinc-50 rounded mb-2"></div>
+                        <div class="w-full h-10 bg-white/5 rounded border border-white/5"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 bg-white dark:bg-surface-dark flex items-center justify-between border-t border-gray-100 dark:border-white/5">
+                  <div class="flex items-center gap-3">
+                    <div class="p-1.5 rounded-md bg-gray-100 dark:bg-white/10 text-gray-500">
+                      <span class="material-symbols-outlined text-xl">dark_mode</span>
+                    </div>
+                    <span class="font-medium text-text-main dark:text-white">{{ 'profile.darkMode' | translate }}</span>
+                  </div>
+                  <div class="size-5 rounded-full border border-gray-300 peer-checked:border-primary peer-checked:bg-primary flex items-center justify-center transition-colors"
+                       [class.border-primary]="themeService.isDark()"
+                       [class.bg-primary]="themeService.isDark()">
+                    <div class="size-2 rounded-full bg-white" [class.opacity-0]="!themeService.isDark()"></div>
+                  </div>
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <div class="mt-8">
+            <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/5">
+              <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-gray-400">devices</span>
+                <div class="flex flex-col">
+                  <span class="text-sm font-medium text-text-main dark:text-white">{{ 'profile.syncSystem' | translate }}</span>
+                  <span class="text-xs text-gray-500">{{ 'profile.syncSystemDescription' | translate }}</span>
+                </div>
+              </div>
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input [(ngModel)]="syncWithSystem" type="checkbox" class="sr-only peer" />
+                <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="fixed bottom-0 left-0 w-full h-96 -z-10 opacity-30 dark:opacity-10 pointer-events-none" style="background: linear-gradient(to top, #e7f3ef 0%, transparent 100%);"></div>
+
+  <app-toast></app-toast>
+</div>

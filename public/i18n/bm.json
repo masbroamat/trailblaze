@@ -123,5 +123,19 @@
       "title": "Gagal memadam",
       "message": "Gagal memadam perjalanan. Sila cuba lagi."
     }
+  },
+  "profile": {
+    "title": "Profil",
+    "theme": "Tema",
+    "version": "TrailBlaze Pro v2.4.1",
+    "lastSynced": "Terakhir disegerakkan hari ini",
+    "themeSelection": {
+      "title": "Pilihan Tema",
+      "subtitle": "Sesuaikan pengalaman visual anda dengan tema yang sesuai dengan gaya anda."
+    },
+    "lightMode": "Mod Cerah",
+    "darkMode": "Mod Gelap",
+    "syncSystem": "Segerak dengan Sistem",
+    "syncSystemDescription": "Tukar tema secara automatik mengikut tetapan sistem anda"
   }
 }
