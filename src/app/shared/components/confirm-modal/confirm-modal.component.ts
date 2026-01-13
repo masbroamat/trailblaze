@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ConfirmModalComponent {
   @Input() isOpen = false;
+  @Input() isLoading = false;
   @Input() title = 'Confirm Action';
   @Input() message = 'Are you sure you want to proceed?';
   @Input() confirmText = 'Confirm';
@@ -19,10 +20,12 @@ export class ConfirmModalComponent {
   @Output() cancelled = new EventEmitter<void>();
 
   onConfirm(): void {
+    if (this.isLoading) return;
     this.confirmed.emit();
   }
 
   onCancel(): void {
+    if (this.isLoading) return;
     this.cancelled.emit();
   }
 

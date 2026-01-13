@@ -4,6 +4,7 @@
 >
   <div
     class="absolute inset-0 bg-black/50 backdrop-blur-sm"
+    [class.cursor-not-allowed]="isLoading"
     (click)="onCancel()"
   ></div>
 
@@ -28,14 +29,21 @@
       <div class="flex gap-3 mt-2">
         <button
           (click)="onConfirm()"
-          class="flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors"
+          class="flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold transition-colors flex items-center justify-center gap-2"
           [class]="getConfirmStyles()"
+          [disabled]="isLoading"
+          [class.opacity-50]="isLoading"
+          [class.cursor-not-allowed]="isLoading"
         >
-          {{ confirmText }}
+          <span *ngIf="isLoading" class="material-symbols-outlined text-[18px] animate-spin">progress_activity</span>
+          {{ isLoading ? '' : confirmText }}
         </button>
         <button
           (click)="onCancel()"
           class="flex-1 px-4 py-2.5 rounded-lg text-sm font-semibold bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:hover:bg-slate-700 transition-colors"
+          [disabled]="isLoading"
+          [class.opacity-50]="isLoading"
+          [class.cursor-not-allowed]="isLoading"
         >
           {{ cancelText }}
         </button>

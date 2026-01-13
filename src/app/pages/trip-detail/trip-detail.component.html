@@ -171,6 +171,7 @@
 
   <app-confirm-modal
     [isOpen]="showDeleteModal"
+    [isLoading]="isDeleting"
     [title]="'trip.deleteEntry.title' | translate"
     [message]="'trip.deleteEntry.message' | translate"
     [confirmText]="'trip.deleteEntry.confirm' | translate"
@@ -238,7 +239,7 @@
               <button
                 type="button"
                 (click)="toggleEditBold()"
-                class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+                class="flex items-center justify-center p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
                 [ngClass]="{'bg-slate-200 dark:bg-slate-600 text-primary': isEditBold, 'text-slate-500': !isEditBold}"
                 [title]="'trip.formatting.bold' | translate"
               >
@@ -247,7 +248,7 @@
               <button
                 type="button"
                 (click)="toggleEditItalic()"
-                class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+                class="flex items-center justify-center p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
                 [ngClass]="{'bg-slate-200 dark:bg-slate-600 text-primary': isEditItalic, 'text-slate-500': !isEditItalic}"
                 [title]="'trip.formatting.italic' | translate"
               >
@@ -256,7 +257,7 @@
               <button
                 type="button"
                 (click)="toggleEditUnderline()"
-                class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+                class="flex items-center justify-center p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
                 [ngClass]="{'bg-slate-200 dark:bg-slate-600 text-primary': isEditUnderline, 'text-slate-500': !isEditUnderline}"
                 [title]="'trip.formatting.underline' | translate"
               >
@@ -266,7 +267,7 @@
               <button
                 type="button"
                 (click)="toggleEditBulletList()"
-                class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+                class="flex items-center justify-center p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
                 [ngClass]="{'bg-slate-200 dark:bg-slate-600 text-primary': isEditList, 'text-slate-500': !isEditList}"
                 [title]="'trip.formatting.bulletList' | translate"
               >
@@ -275,7 +276,7 @@
               <button
                 type="button"
                 (click)="toggleEditQuote()"
-                class="p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+                class="flex items-center justify-center p-1.5 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
                 [ngClass]="{'bg-slate-200 dark:bg-slate-600 text-primary': isEditQuote, 'text-slate-500': !isEditQuote}"
                 [title]="'trip.formatting.quote' | translate"
               >
@@ -311,7 +312,7 @@
                     {{ isPhotoMarkedForDeletion(photo.photoUrl) ? 'restore' : 'delete' }}
                   </span>
                 </div>
-                <div *ngIf="isPhotoMarkedForDeletion(photo.photoUrl)" class="absolute top-1 right-1 bg-red-500 text-white rounded-full p-0.5">
+                <div *ngIf="isPhotoMarkedForDeletion(photo.photoUrl)" class="flex items-center justify-center absolute top-1 right-1 bg-red-500 text-white rounded-full p-0.5">
                   <span class="material-symbols-outlined text-[14px]">close</span>
                 </div>
               </div>
@@ -327,6 +328,7 @@
     <div class="flex justify-end gap-3 p-6 border-t border-slate-200 dark:border-slate-700 flex-shrink-0">
       <button
         (click)="closeEditModal()"
+        [disabled]="isUpdating"
         class="px-5 py-2.5 rounded-xl text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
       >
         {{ 'trip.editEntry.cancel' | translate }}

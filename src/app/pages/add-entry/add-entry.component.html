@@ -88,7 +88,7 @@
               <button
                 type="button"
                 (click)="toggleBold()"
-                class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                class="flex items-center justify-center p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                 [ngClass]="{'bg-slate-200 dark:bg-slate-700 text-primary': isBold, 'text-slate-500': !isBold}"
                 [title]="'addEntry.formatting.bold' | translate"
               >
@@ -97,7 +97,7 @@
               <button
                 type="button"
                 (click)="toggleItalic()"
-                class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                class="flex items-center justify-center p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                 [ngClass]="{'bg-slate-200 dark:bg-slate-700 text-primary': isItalic, 'text-slate-500': !isItalic}"
                 [title]="'addEntry.formatting.italic' | translate"
               >
@@ -106,7 +106,7 @@
               <button
                 type="button"
                 (click)="toggleUnderline()"
-                class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                class="flex items-center justify-center p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                 [ngClass]="{'bg-slate-200 dark:bg-slate-700 text-primary': isUnderline, 'text-slate-500': !isUnderline}"
                 [title]="'addEntry.formatting.underline' | translate"
               >
@@ -116,7 +116,7 @@
               <button
                 type="button"
                 (click)="toggleBulletList()"
-                class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                class="flex items-center justify-center p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                 [ngClass]="{'bg-slate-200 dark:bg-slate-700 text-primary': isList, 'text-slate-500': !isList}"
                 [title]="'addEntry.formatting.bulletList' | translate"
               >
@@ -125,7 +125,7 @@
               <button
                 type="button"
                 (click)="toggleQuote()"
-                class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
+                class="flex items-center justify-center p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors"
                 [ngClass]="{'bg-slate-200 dark:bg-slate-700 text-primary': isQuote, 'text-slate-500': !isQuote}"
                 [title]="'addEntry.formatting.quote' | translate"
               >
@@ -152,7 +152,7 @@
           <div class="space-y-6">
             <div class="flex items-center justify-between">
               <h3 class="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                <span class="p-2 bg-primary/10 rounded-full text-primary">
+                <span class="flex items-center justify-center p-2 bg-primary/10 rounded-full text-primary">
                   <span class="material-symbols-outlined">photo_library</span>
                 </span>
                 {{ 'addEntry.photoGallery' | translate }}
@@ -165,7 +165,7 @@
             <div class="columns-2 md:columns-3 gap-6 space-y-6">
               @for (preview of imagePreviews; track preview; let i = $index) {
                 <div class="break-inside-avoid relative group rounded-2xl overflow-hidden shadow-sm">
-                  <img [src]="preview" alt="Preview" class="w-full h-auto object-cover" />
+                  <img [src]="preview | imageUrl" alt="Preview" class="w-full h-auto object-cover" />
 
                   <div *ngIf="isCoverPhoto(i)" class="absolute top-2 left-2 px-2 py-1 bg-primary text-surface-dark text-xs font-bold rounded-full flex items-center gap-1 z-10">
                     <span class="material-symbols-outlined text-[14px]">star</span>
@@ -175,14 +175,14 @@
                   <button
                     type="button"
                     (click)="removeFile(i); $event.stopPropagation()"
-                    class="absolute top-2 right-2 p-1.5 bg-black/60 hover:bg-red-500 text-white rounded-full transition-all z-10 opacity-100 md:opacity-0 md:group-hover:opacity-100"
+                    class="flex items-center justify-center absolute top-2 right-2 p-1.5 bg-black/60 hover:bg-red-500 text-white rounded-full transition-all z-10 opacity-100 md:opacity-0 md:group-hover:opacity-100"
                   >
                     <span class="material-symbols-outlined text-[16px]">close</span>
                   </button>
 
                   <div
                     *ngIf="!isCoverPhoto(i)"
-                    class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all cursor-pointer"
+                    class="absolute inset-0 bg-black/40 flex items-center justify-center md:opacity-0 group-hover:opacity-100 transition-all cursor-pointer"
                     (click)="setCoverPhoto(i)"
                   >
                     <span class="px-3 py-1.5 bg-white/90 hover:bg-primary text-slate-800 hover:text-surface-dark text-xs font-semibold rounded-full flex items-center gap-1 transition-colors">
@@ -210,7 +210,7 @@
                   accept="image/*"
                   class="hidden"
                 />
-                <div class="bg-surface-light dark:bg-surface-dark p-4 rounded-full shadow-sm mb-3 group-hover:scale-110 transition-transform">
+                <div class="flex items-center justify-center bg-surface-light dark:bg-surface-dark p-4 rounded-full shadow-sm mb-3 group-hover:scale-110 transition-transform">
                   <span class="material-symbols-outlined text-primary text-3xl">cloud_upload</span>
                 </div>
                 <span class="text-sm font-bold text-slate-900 dark:text-white">{{ isDragging ? ('addEntry.dropPhotos' | translate) : ('addEntry.clickOrDrop' | translate) }}</span>
@@ -232,6 +232,7 @@
           <button
             type="button"
             (click)="goBack()"
+            [disabled]="isSubmitting"
             class="px-5 py-2.5 rounded-2xl text-slate-600 dark:text-slate-300 font-medium hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors text-sm"
           >
             {{ 'common.cancel' | translate }}

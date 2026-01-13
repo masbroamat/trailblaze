@@ -85,7 +85,7 @@
             <div class="bg-primary/20 rounded-full size-36 shadow-soft flex items-center justify-center overflow-hidden">
               <img
                 *ngIf="previewUrl || profileImageUrl"
-                [src]="previewUrl || profileImageUrl"
+                [src]="previewUrl || profileImageUrl | imageUrl"
                 alt="Profile"
                 class="w-full h-full object-cover"
               />

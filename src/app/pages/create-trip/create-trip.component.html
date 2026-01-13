@@ -222,7 +222,7 @@
           </div>
 
           <div *ngIf="imagePreview" class="relative w-full">
-            <img [src]="imagePreview" alt="Preview" class="w-full h-48 object-cover rounded-lg" />
+            <img [src]="imagePreview | imageUrl" alt="Preview" class="w-full h-48 object-cover rounded-lg" />
             <button
               type="button"
               (click)="removeImage(); $event.stopPropagation()"

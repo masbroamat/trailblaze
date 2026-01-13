@@ -7,11 +7,12 @@ import { ProfileService } from '../../../core/services/profile.service';
 import { ClickOutsideDirective } from '../../directives/click-outside.directive';
 import { TranslationService } from '../../../core/services/translation.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ImageUrlPipe } from '../../pipes/image-url.pipe';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, ClickOutsideDirective, TranslatePipe],
+  imports: [CommonModule, RouterLink, ClickOutsideDirective, TranslatePipe, ImageUrlPipe],
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit {
@@ -71,7 +72,7 @@ export class NavbarComponent implements OnInit {
     if (this.currentPage === 'journals') {
       return;
     }
-    
+
     if (!this.router.url.includes('/dashboard')) {
       this.router.navigate(['/dashboard']).then(() => {
         setTimeout(() => this.doScroll(), 100);

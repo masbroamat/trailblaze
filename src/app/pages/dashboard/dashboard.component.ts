@@ -41,6 +41,7 @@ export class DashboardComponent implements OnInit {
 
   showDeleteModal = false;
   tripToDelete: number | null = null;
+  isDeleting = false;
 
   years = Array.from({ length: 7 }, (_, i) =>
     String(new Date().getFullYear() - i)
@@ -127,12 +128,11 @@ export class DashboardComponent implements OnInit {
   getCoverImage(url: string | undefined): string {
     if (!url) return 'url(placeholder.png)';
 
-    const parts = url.split('/');
-    const filename = parts.pop();
-    const path = parts.join('/');
-    const encodedFilename = encodeURIComponent(filename || '');
+    if (url.startsWith('http')) {
+      return `url('${url}')`;
+    }
 
-    return `url('${this.BACKEND_URL}${path}/${encodedFilename}')`;
+    return `url('${this.BACKEND_URL}${url}')`;
   }
 
   formatDateRange(start: string, end: string): string {
@@ -151,6 +151,7 @@ export class DashboardComponent implements OnInit {
   deleteTrip() {
     if (!this.tripToDelete) return;
 
+    this.isDeleting = true;
     this.tripService.deleteTrip(this.tripToDelete).subscribe({
       next: () => {
         this.trips = this.trips.filter(t => t.tripId !== this.tripToDelete);
@@ -158,6 +159,7 @@ export class DashboardComponent implements OnInit {
           this.translateService.instant('toast.tripDeleted.title'),
           this.translateService.instant('toast.tripDeleted.message')
         );
+        this.isDeleting = false;
         this.showDeleteModal = false;
         this.tripToDelete = null;
       },
@@ -166,6 +168,7 @@ export class DashboardComponent implements OnInit {
           this.translateService.instant('toast.deleteFailed.title'),
           this.translateService.instant('toast.deleteFailed.message')
         );
+        this.isDeleting = false;
         this.showDeleteModal = false;
       }
     });
