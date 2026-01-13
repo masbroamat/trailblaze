@@ -46,6 +46,7 @@ export class TripDetailComponent implements OnInit, AfterViewChecked {
 
   showDeleteModal = false;
   entryToDelete: number | null = null;
+  isDeleting = false;
 
   showEditModal = false;
   editingEntry: JournalEntry | null = null;
@@ -220,6 +221,10 @@ export class TripDetailComponent implements OnInit, AfterViewChecked {
   getCoverImage(url: string | undefined): SafeStyle {
     if (!url) return this.sanitizer.bypassSecurityTrustStyle('url(placeholder.png)');
 
+    if (url.startsWith('http')) {
+      return this.sanitizer.bypassSecurityTrustStyle(`url('${url}')`);
+    }
+
     const parts = url.split('/');
     const filename = parts.pop();
     const path = parts.join('/');
@@ -239,6 +244,11 @@ export class TripDetailComponent implements OnInit, AfterViewChecked {
 
   formatUrl(url: string): string {
     if (!url) return '';
+
+    if (url.startsWith('http://') || url.startsWith('https://')) {
+        return url;
+    }
+
     const parts = url.split('/');
     const filename = parts.pop();
     const path = parts.join('/');
@@ -270,6 +280,7 @@ export class TripDetailComponent implements OnInit, AfterViewChecked {
   deleteEntry() {
     if (!this.entryToDelete) return;
 
+    this.isDeleting = true;
     this.journalService.deleteEntry(this.entryToDelete).subscribe({
       next: () => {
         this.entries = this.entries.filter((e) => e.entryId !== this.entryToDelete);
@@ -277,6 +288,7 @@ export class TripDetailComponent implements OnInit, AfterViewChecked {
           this.translateService.instant('toast.entryDeleted.title'),
           this.translateService.instant('toast.entryDeleted.message')
         );
+        this.isDeleting = false;
         this.showDeleteModal = false;
         this.entryToDelete = null;
       },
@@ -285,6 +297,7 @@ export class TripDetailComponent implements OnInit, AfterViewChecked {
           this.translateService.instant('toast.entryDeleteFailed.title'),
           this.translateService.instant('toast.entryDeleteFailed.message')
         );
+        this.isDeleting = false;
         this.showDeleteModal = false;
       }
     });

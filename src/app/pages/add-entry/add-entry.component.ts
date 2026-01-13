@@ -9,11 +9,12 @@ import { Trip, JournalEntry } from '../../core/models/interfaces';
 import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { ToastService } from '../../shared/components/toast/toast.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ImageUrlPipe } from '../../shared/pipes/image-url.pipe';
 
 @Component({
   selector: 'app-add-entry',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, ToastComponent, TranslatePipe],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, ToastComponent, TranslatePipe, ImageUrlPipe],
   templateUrl: './add-entry.component.html',
   styleUrl: './add-entry.component.scss'
 })

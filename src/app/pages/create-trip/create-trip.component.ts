@@ -8,11 +8,12 @@ import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { ToastService } from '../../shared/components/toast/toast.service';
 import { ClickOutsideDirective } from '../../shared/directives/click-outside.directive';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ImageUrlPipe } from '../../shared/pipes/image-url.pipe';
 
 @Component({
   selector: 'app-create-trip',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink, CommonModule, NavbarComponent, ToastComponent, ClickOutsideDirective, TranslatePipe],
+  imports: [ReactiveFormsModule, RouterLink, CommonModule, NavbarComponent, ToastComponent, ClickOutsideDirective, TranslatePipe, ImageUrlPipe],
   templateUrl: './create-trip.component.html',
   styleUrl: './create-trip.component.scss'
 })

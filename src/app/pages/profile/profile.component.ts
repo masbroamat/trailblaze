@@ -9,11 +9,12 @@ import { ToastComponent } from '../../shared/components/toast/toast.component';
 import { ToastService } from '../../shared/components/toast/toast.service';
 import { TranslationService } from '../../core/services/translation.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { ImageUrlPipe } from '../../shared/pipes/image-url.pipe';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule, ToastComponent, TranslatePipe],
+  imports: [CommonModule, RouterLink, FormsModule, ToastComponent, TranslatePipe, ImageUrlPipe],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })

@@ -217,6 +217,7 @@
 
   <app-confirm-modal
     [isOpen]="showDeleteModal"
+    [isLoading]="isDeleting"
     [title]="'dashboard.deleteTrip.title' | translate"
     [message]="'dashboard.deleteTrip.message' | translate"
     [confirmText]="'dashboard.deleteTrip.confirm' | translate"
