@@ -89,8 +89,10 @@ export class CreateTripComponent {
 
   selectDate(day: number, type: 'start' | 'end'): void {
     const calendarMonth = type === 'start' ? this.startDateCalendarMonth : this.endDateCalendarMonth;
-    const date = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), day);
-    const formattedDate = date.toISOString().split('T')[0];
+    const year = calendarMonth.getFullYear();
+    const month = String(calendarMonth.getMonth() + 1).padStart(2, '0');
+    const dayStr = String(day).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${dayStr}`;
 
     if (type === 'start') {
       this.tripForm.patchValue({ startDate: formattedDate });
@@ -122,7 +124,8 @@ export class CreateTripComponent {
 
   formatDisplayDate(dateStr: string): string {
     if (!dateStr) return 'Select date';
-    const date = new Date(dateStr);
+    const [year, month, day] = dateStr.split('-').map(Number);
+    const date = new Date(year, month - 1, day);
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
   }
 
