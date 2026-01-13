@@ -73,7 +73,8 @@
               "buildTarget": "trailblaze:build:production"
             },
             "development": {
-              "buildTarget": "trailblaze:build:development"
+              "buildTarget": "trailblaze:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
