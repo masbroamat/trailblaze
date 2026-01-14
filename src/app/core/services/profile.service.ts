@@ -25,10 +25,10 @@ export class ProfileService {
     return this.http.put<ApiResponse<ProfileUpdateResponse>>(`${this.API_URL}/${userId}`, formData).pipe(
       tap(response => {
         if (response.success && response.data) {
-          sessionStorage.setItem('auth_username', response.data.username);
-          sessionStorage.setItem('auth_fullName', response.data.fullName);
+          localStorage.setItem('auth_username', response.data.username);
+          localStorage.setItem('auth_fullName', response.data.fullName);
           if (response.data.profilePicUrl) {
-            sessionStorage.setItem('auth_profileImageUrl', response.data.profilePicUrl);
+            localStorage.setItem('auth_profileImageUrl', response.data.profilePicUrl);
           }
         }
       })

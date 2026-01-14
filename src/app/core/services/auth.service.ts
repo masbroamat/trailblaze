@@ -19,7 +19,7 @@ export class AuthService {
   constructor() { }
 
   private hasToken(): boolean {
-    return !!sessionStorage.getItem(this.TOKEN_KEY);
+    return !!localStorage.getItem(this.TOKEN_KEY);
   }
 
   register(userData: RegisterRequest): Observable<ApiResponse<string>> {
@@ -30,12 +30,12 @@ export class AuthService {
     return this.http.post<ApiResponse<AuthResponse>>(`${this.API_URL}/login`, credentials).pipe(
       tap(response => {
         if (response.success && response.data.token) {
-          sessionStorage.setItem(this.TOKEN_KEY, response.data.token);
-          sessionStorage.setItem("auth_userId", response.data.userId.toString());
-          sessionStorage.setItem("auth_username", response.data.username);
-          sessionStorage.setItem("auth_fullName", response.data.fullName);
+          localStorage.setItem(this.TOKEN_KEY, response.data.token);
+          localStorage.setItem("auth_userId", response.data.userId.toString());
+          localStorage.setItem("auth_username", response.data.username);
+          localStorage.setItem("auth_fullName", response.data.fullName);
           if (response.data.profilePicUrl) {
-            sessionStorage.setItem("auth_profileImageUrl", response.data.profilePicUrl);
+            localStorage.setItem("auth_profileImageUrl", response.data.profilePicUrl);
           }
           this.isLoggedIn$.next(true);
         }
@@ -44,20 +44,20 @@ export class AuthService {
   }
 
   logout() {
-    sessionStorage.removeItem(this.TOKEN_KEY);
-    sessionStorage.removeItem("auth_userId");
-    sessionStorage.removeItem("auth_username");
-    sessionStorage.removeItem("auth_fullName");
-    sessionStorage.removeItem("auth_profileImageUrl");
+    localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem("auth_userId");
+    localStorage.removeItem("auth_username");
+    localStorage.removeItem("auth_fullName");
+    localStorage.removeItem("auth_profileImageUrl");
     this.isLoggedIn$.next(false);
   }
 
   getUserId(): number | null {
-    const id = sessionStorage.getItem("auth_userId");
+    const id = localStorage.getItem("auth_userId");
     return id ? parseInt(id, 10) : null;
   }
 
   getToken(): string | null {
-    return sessionStorage.getItem(this.TOKEN_KEY);
+    return localStorage.getItem(this.TOKEN_KEY);
   }
 }

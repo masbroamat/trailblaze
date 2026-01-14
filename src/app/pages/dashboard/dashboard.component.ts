@@ -51,7 +51,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.loadTrips();
-    this.username = sessionStorage.getItem("auth_username");
+    this.username = localStorage.getItem("auth_username");
   }
 
   loadTrips() {

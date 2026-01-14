@@ -34,7 +34,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private loadProfileImage(): void {
-    const storedImageUrl = sessionStorage.getItem('auth_profileImageUrl');
+    const storedImageUrl = localStorage.getItem('auth_profileImageUrl');
     this.profileImageUrl = storedImageUrl ? this.profileService.getProfileImageUrl(storedImageUrl) : null;
   }
 

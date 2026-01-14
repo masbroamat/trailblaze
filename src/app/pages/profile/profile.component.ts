@@ -46,9 +46,9 @@ export class ProfileComponent implements OnInit {
   }
 
   private loadUserData() {
-    this.username = sessionStorage.getItem('auth_username') || '';
-    this.fullName = sessionStorage.getItem('auth_fullName') || '';
-    const storedImageUrl = sessionStorage.getItem('auth_profileImageUrl');
+    this.username = localStorage.getItem('auth_username') || '';
+    this.fullName = localStorage.getItem('auth_fullName') || '';
+    const storedImageUrl = localStorage.getItem('auth_profileImageUrl');
     this.profileImageUrl = storedImageUrl ? this.profileService.getProfileImageUrl(storedImageUrl) : null;
   }
 

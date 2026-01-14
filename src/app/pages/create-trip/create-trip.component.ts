@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { TripService } from './../../core/services/trip.service';
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { NavbarComponent } from '../../shared/components/navbar/navbar.component';
@@ -17,7 +17,7 @@ import { ImageUrlPipe } from '../../shared/pipes/image-url.pipe';
   templateUrl: './create-trip.component.html',
   styleUrl: './create-trip.component.scss'
 })
-export class CreateTripComponent {
+export class CreateTripComponent implements OnInit {
   private fb = inject(FormBuilder);
   private tripService = inject(TripService);
   private router = inject(Router);
@@ -37,6 +37,10 @@ export class CreateTripComponent {
 
   isSubmitting = false;
   errorMessage = '';
+
+  ngOnInit(): void {
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+  }
 
   showStartDatePicker = false;
   showEndDatePicker = false;
