@@ -126,6 +126,31 @@ export class CreateTripComponent implements OnInit {
            today.getFullYear() === calendarMonth.getFullYear();
   }
 
+  isDateDisabled(day: number, type: 'start' | 'end'): boolean {
+    if (!day) return false;
+
+    const calendarMonth = type === 'start' ? this.startDateCalendarMonth : this.endDateCalendarMonth;
+    const currentDate = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), day);
+
+    if (type === 'start') {
+      const endDateValue = this.tripForm.get('endDate')?.value;
+      if (endDateValue) {
+        const [year, month, dayNum] = endDateValue.split('-').map(Number);
+        const endDate = new Date(year, month - 1, dayNum);
+        return currentDate > endDate;
+      }
+    } else {
+      const startDateValue = this.tripForm.get('startDate')?.value;
+      if (startDateValue) {
+        const [year, month, dayNum] = startDateValue.split('-').map(Number);
+        const startDate = new Date(year, month - 1, dayNum);
+        return currentDate < startDate;
+      }
+    }
+
+    return false;
+  }
+
   formatDisplayDate(dateStr: string): string {
     if (!dateStr) return 'Select date';
     const [year, month, day] = dateStr.split('-').map(Number);

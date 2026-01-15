@@ -79,12 +79,14 @@
                       <button
                         *ngIf="day"
                         type="button"
-                        (click)="selectDate(day, 'start')"
+                        (click)="!isDateDisabled(day, 'start') && selectDate(day, 'start')"
+                        [disabled]="isDateDisabled(day, 'start')"
                         class="size-9 rounded-lg text-sm font-medium transition-all flex items-center justify-center"
                         [ngClass]="{
                           'bg-primary text-black': isSelectedDate(day, 'start'),
-                          'ring-2 ring-primary/50': isToday(day, 'start') && !isSelectedDate(day, 'start'),
-                          'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10': !isSelectedDate(day, 'start')
+                          'ring-2 ring-primary/50': isToday(day, 'start') && !isSelectedDate(day, 'start') && !isDateDisabled(day, 'start'),
+                          'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10': !isSelectedDate(day, 'start') && !isDateDisabled(day, 'start'),
+                          'text-slate-300 dark:text-slate-600 cursor-not-allowed': isDateDisabled(day, 'start')
                         }"
                       >
                         {{ day }}
@@ -136,12 +138,14 @@
                       <button
                         *ngIf="day"
                         type="button"
-                        (click)="selectDate(day, 'end')"
+                        (click)="!isDateDisabled(day, 'end') && selectDate(day, 'end')"
+                        [disabled]="isDateDisabled(day, 'end')"
                         class="size-9 rounded-lg text-sm font-medium transition-all flex items-center justify-center"
                         [ngClass]="{
                           'bg-primary text-black': isSelectedDate(day, 'end'),
-                          'ring-2 ring-primary/50': isToday(day, 'end') && !isSelectedDate(day, 'end'),
-                          'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10': !isSelectedDate(day, 'end')
+                          'ring-2 ring-primary/50': isToday(day, 'end') && !isSelectedDate(day, 'end') && !isDateDisabled(day, 'end'),
+                          'text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/10': !isSelectedDate(day, 'end') && !isDateDisabled(day, 'end'),
+                          'text-slate-300 dark:text-slate-600 cursor-not-allowed': isDateDisabled(day, 'end')
                         }"
                       >
                         {{ day }}
